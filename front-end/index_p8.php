@@ -30,6 +30,7 @@
 		
 		echo('<link rel="stylesheet" href="css/lightbox.css">');
 	}
+        echo 'Hola mundo';
 	?>
 </head>
 
