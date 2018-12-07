@@ -15,6 +15,10 @@ body{
 
 /*----------------GENERALES------------------*/
 
+.activo{
+    color: #ffffff;
+    background-color: #9900cc;
+}
 /*clearfix*/
 
 .clearfix:before,
@@ -55,12 +59,25 @@ ul{
 	padding: 0;
 }
 
-.buttom{
+.buttom_green{
 	display: inline-block;
 	text-decoration: none;
 	float: right;
 	padding: 10px 40px;
-	background-color: #fe4918;
+	background-color: #289C24;
+	color: #ffffff;
+	font-family: 'oswald', sans-serif;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-top: 20px;
+	transition: all .1s ease;
+}
+.buttom_red{
+	display: inline-block;
+	text-decoration: none;
+	float: right;
+	padding: 10px 40px;
+	background-color: #F90005;
 	color: #ffffff;
 	font-family: 'oswald', sans-serif;
 	font-weight: bold;
@@ -69,9 +86,14 @@ ul{
 	transition: all .1s ease;
 }
 
-.buttom:hover{
+.buttom_red:hover{
 	background-color: #e33000;
 }
+
+.buttom_green:hover{
+	background-color: #7DF56A;
+}
+
 
 
 .seccion{
@@ -288,7 +310,7 @@ div.extendido-usuarios a:hover{
 	
 	
 div.extendido-usuarios{
-	width: 17%;
+	width: 200px;
 	border-top-right-radius: 5px; 
 	border-top-left-radius: 5px;
 	position: relative;
@@ -359,6 +381,186 @@ div.extendido-usuarios{
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+}
+
+/*------------------------FORMULARIOS-------------------------*/
+
+div.cabecera_formularios h3{
+	font-size: 2em;
+	text-align: center;
+	border-bottom: 2px solid #F90005;
+	padding-bottom: 15px;
+	
+}
+div.formulario{
+	
+	background-color: #7fb2e5;
+	border: 1px solid #747170;
+	box-shadow: 2px 2px 10px 10px #747170;
+	border-radius: 20px;
+	padding: 20px 20px 20px 60px;
+        margin: 300px 0;
+}
+
+div.formulario_small{
+	
+	background-color: #7fb2e5;
+	border: 1px solid #747170;
+	box-shadow: 2px 2px 10px 10px #747170;
+	border-radius: 20px;
+	padding: 20px ;
+        margin: 300px 0;
+}
+
+div.col_formulario input,
+div.col_formulario textarea{
+	
+	width: 100%;
+	display: block;
+	margin: 20px auto;
+}
+
+div.col_3_formulario input,
+div.col_3_formulario select{
+	
+	width: 90%;
+	display: block;
+	margin: 20px auto;
+}
+
+@media only screen and (max-width:600px){
+	
+	div.col_3_formulario input,
+	div.col_3_formulario select{
+		
+		width: 100%;
+	}
+	
+	div.col_3_formulario checkbox{
+		
+		display: inline;
+	}
+}
+	
+	
+div.col_2_formulario input{
+	
+	width: 90%;
+	display: block;
+	
+}
+
+div.col_2_formulario label,
+div.col_formulario label,
+div.col_3_formulario label{
+	
+	color: #000000;
+	
+}
+
+	
+	
+
+
+@media only screen and (min-width:768px){
+	
+	div.row{
+	margin: 120px 0 20px 0;
+        height: 50px;
+	}
+	
+	div.formulario{
+	
+		width: 70%;
+		margin: 10px auto;
+		
+}
+	
+	div.formulario_small{
+	
+		width: 25%;
+		margin: 10px auto;
+		
+}
+	
+	div.col_formulario{
+		
+		width: 50%;
+		margin: 0 auto;
+		
+		
+	}
+
+	div.col_2_formulario{
+	
+	width: 50%;
+	float: left;
+	margin:15px 0px;
+	
+}
+	div.col_3_formulario{
+		
+		width: 33.3%;
+		margin: 0 auto;
+		float: left;
+	}
+	
+	div.leyenda{
+		color: #B1080A;
+		width: 60%;
+		margin: 20px auto;
+	}
+	
+	.activo_usuario{
+		
+		width: 50%;
+		margin: 0 auto;
+		display: inline;
+	}
+	
+}
+
+/*----------------------------------GESTIONAR USUARIOS Y TABLAS---------------------*/
+
+    
+div.tabla{
+	overflow-x:auto;
+	
+}
+
+table{
+	width: 100%;
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+	border-spacing: 0;
+		
+}
+
+td,tr{
+	text-align: left;
+	padding: 8px;
+	border-bottom: 1px solid #939191;
+}
+
+tr:nth-child(even){
+	background-color: #BAB9B9;
+}
+
+tr:hover{
+	
+	background-color: #939191;
+}
+@media only screen and (min-width:768px){
+	
+	div.tabla{
+		
+		width: 70%;
+		margin: 50px auto;
+	}
+	
+	table.tabla{
+		width: 100%;
+	}
 }
 /*--------footer-----*/
 
