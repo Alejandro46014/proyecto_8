@@ -19,7 +19,7 @@
 			<a class="user-icono" href="#"><i class="fas fa-user"></i><spam><?php echo $usuario->getNombreUsuario();  ?></spam></a></nav>
 			<div class="extendido-usuarios">
 				<a  href="#">Modificar perfil</a>
-   				<a  href="#">Darse de baja</a>
+   				<a  href="?controller=Usuarios&action=cerrarSesion">Darse de baja</a>
                                 <a  href="#">Cerrar sesión</a>
 				
  			 </div>
