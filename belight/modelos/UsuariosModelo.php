@@ -1,6 +1,7 @@
 <?php
 
-
+require_once 'modelos/TipoUsuariosModelo.php';
+require_once 'modelos/DireccionUsuariosModelo.php';
 
 class UsuariosModelo {
 	
@@ -8,8 +9,6 @@ class UsuariosModelo {
 	protected $id;
 	protected $nombre_usuario;
 	protected $apellidos_usuario;
-	protected $apellido1;
-	protected $apellido2;
 	protected $fecha_nacimiento_usuario;
 	protected $pais_usuario;
 	protected $fecha_alta_usuario;
