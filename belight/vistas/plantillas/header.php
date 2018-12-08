@@ -16,7 +16,7 @@
 	<!--<link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|PT+Sans" rel="stylesheet">-->
 	
   
-	<link rel="stylesheet" href="css/estilos _p9.css">
+	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	
 	
@@ -35,7 +35,7 @@
 	
 	  <div class="contenido-header">
 		
-		 <img src="img/cabecera_peliculas.png" alt="Cabecera"/>
+		 <img src="img/cabecera_patinetes.png" alt="Cabecera"/>
 		 
 	  </div><!--.contenido_header-->
           

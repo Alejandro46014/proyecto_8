@@ -1,6 +1,6 @@
 <?php
 
-require_once 'TipoUsuariosModelo.php';
+
 
 class UsuariosModelo {
 	

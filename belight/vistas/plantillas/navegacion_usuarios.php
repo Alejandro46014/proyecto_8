@@ -8,22 +8,22 @@
 			<span></span>
 		</div>
 		<nav class="navegacion-principal">
-			<a href="?controller=Productos&action=index&id=1">Acción</a>
-			<a href="?controller=Productos&action=index&id=2">Terror</a> 
-			<a href="?controller=Productos&action=index&id=3">Románticas</a> 
-			<a href="?controller=Productos&action=index&id=4">Infantiles</a> 
-			<a href="?controller=Productos&action=index&id=5">Comedia</a>
-			<a href="?controller=Productos&action=index&id=6">Ciencia-ficción</a> 
-			<a href="?controller=Productos&action=index&id=7">Drama</a> 
-			<a href="?controller=Productos&action=index&id=8">Musicales</a> 
-			<a class="user-icono" href="#"><i class="fas fa-user"></i><spam><?php echo $usuario->getNombreUsuario();  ?></spam></a></nav>
-			<div class="extendido-usuarios">
-				<a  href="#">Modificar perfil</a>
-   				<a  href="#">Darse de baja</a>
-                                <a  href="#">Cerrar sesión</a>
+			<a href="?controller=Productos&action=index&id=1">Patinetes</a>
+			<a href="?controller=Productos&action=index&id=2">Bicicletas</a> 
+			<a href="?controller=Productos&action=index&id=3">SegWays</a> 
+                        <a href="?controller=Productos&action=index&id=4">NineBots</a> 
+			<a href="?controller=Productos&action=index&id=5">Monociclos</a>
+			<a href="?controller=Productos&action=index&id=6">HoverBoards</a> 
+			<a class="user-icono" href="#"><i class="fas fa-user"></i><spam>Alejandro</spam></a>
+               
+		<div class="extendido-usuarios">
+			<a  href="?controller=Usuarios&action=modificarPerfil">Modificar perfil</a>
+   			<a  href="?controller=Usuarios&action=bajaVista">Darse de baja</a>
+    			<a  href="?controller=Usuarios&action=cerrarSesion">Cerrar sesión</a>
 				
- 			 </div>
+                </div>
+                </nav>
 	</div><!--.contenedor+clearfix-->
 </div><!--.barra-->
-<?php echo $usuario->getNombreUsuario();
-require_once 'controladores/ControladorFrontal.php';  ?>
+
+<?php require_once 'controladores/ControladorFrontal.php';  ?>

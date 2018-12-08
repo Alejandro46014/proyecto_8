@@ -42,9 +42,11 @@
             
             <input class="buttom_green" type="submit" value="Darse de alta" />
         </div>
+    <div class="col_formulario">
        <div class="leyenda">
-       <p ><b>* los campos marcados con este símbolo son obligatorios</b></p>
-       </div>    
+           <small>* los campos marcados con este símbolo son obligatorios</small>
+       </div>  
+    </div>
 
     </form>
 </div>
