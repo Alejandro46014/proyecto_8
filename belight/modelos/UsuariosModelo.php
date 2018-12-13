@@ -143,7 +143,6 @@ class UsuariosModelo {
 					$usuario->nombre_usuario=$fila['nombre_usuario'];
 					$usuario->apellidos_usuario=$fila['apellidos_usuario'];
 					$usuario->email_usuario=$fila['email_usuario'];
-					$usuario->activo_usuario=$fila['activo_usuario'];
 					$usuario->password_usuario=$fila['password_usuario'];
 					$usuario->tipo_usuario=new TipoUsuarios();
 					
@@ -703,42 +702,57 @@ class UsuariosModelo {
 
         /*------------------DARSE DE BAJA-----------------*/
 	
-	public function darseBaja(){
+	public function darseBaja($id){
 		
 		require_once("ConectarModelo.php");
 		
-		$id=$this->id;
-		$activo= $this->activo_usuario;
+		
+		
 	try{	
 		$conexion= ConectarModelo::conexion();
+                
+                $conexion->beginTransaction();
 			
-		$sql="UPDATE usuarios SET activo_usuario=:activo WHERE id_usuario=:id";
+		$sql="DELETE FROM usuarios WHERE id_usuario=:id";
 		
 		$consulta=$conexion->prepare($sql);
 		
 		$consulta->bindParam(':id',$id,PDO::PARAM_INT);
-		$consulta->bindParam(':activo',$activo,PDO::PARAM_STR);
 		
-		$resultado=$consulta->execute();
-		if($resultado){
+		$consulta->execute();
+	
+		$consulta->closeCursor();
+                
+                $sql="DELETE FROM direcciones WHERE usuarios_id_usuario=:id";
+		
+		$consulta=$conexion->prepare($sql);
+		
+		$consulta->bindParam(':id',$id,PDO::PARAM_INT);
+		
+		$consulta->execute();
+	
+		$consulta->closeCursor();
+		
+		$resultado=$conexion->commit();
+			
+			if($resultado){
 				
 				echo('<script type="text/javascript">
 				alert("El usuario se dio de baja correctamente ");
 				</script>');
-			}else{
-				echo('<script type="text/javascript">
-				alert("Hubo un error durante el proceso de baja, contacte con el administrador ");
-				</script>');
 			}
-		
-		$consulta->closeCursor();
-		
-		
 		
 	}catch(PDOException $e){
 		
 		die ("Error ".$e->getMessage());
 			echo("Linea de error ".$e->getLine());
+                        
+                         if($conexion->rollBack()){
+                            
+                            echo('<script type="text/javascript">
+				alert("Hubo un error durante el proceso de baja, contacte con el administrador ");
+				</script>');
+                        }
 	}
 		$conexion=null;
 		
@@ -797,66 +811,8 @@ class UsuariosModelo {
 					
 				}elseif($numero_filas==1){
 					
-					
-					                                        
-					$usuario= new UsuariosModelo();
-					
-					$usuario->id=$resultado['id_usuario'];
-					$usuario->nombre_usuario=$resultado['nombre_usuario'];
-					$usuario->apellidos_usuario=$resultado['apellidos_usuario'];
-					$usuario->fecha_nacimiento_usuario=$resultado['fecha_nacimiento_usuario'];
-					$usuario->email_usuario=$resultado['email_usuario'];
-					$usuario->fecha_alta_usuario=$resultado['fecha_alta_usuario'];
-					$usuario->activo_usuario=$resultado['activo_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios($resultado['tipo_usuarios_id_tipo_usuario']);
-					$usuario->pais_usuario=$resultado['pais_usuario'];
-					$usuario->password_usuario=$resultado['password_usuario'];
-					$fecha_alta=$usuario->fecha_alta_usuario;
-					$fecha_actual=date("Y-m-d");
-					
-					$diff=abs(strtotime($fecha_actual)- strtotime($fecha_alta));
-					$antiguedad= floor($diff / (30*60*60*24));
-					
-                                        
-					if($antiguedad > 6 && $numero_votaciones > 25 && $usuario->tipo_usuario->getIdTipoUsuario()==2){
-						
-						if($tipo_usuario->actualizarTipoUsuario(3,$usuario)){
-						$usuario->setTipoUsuario(3);
-                                                	
-							
-						
-						echo('<script type="text/javascript">
-								alert("Su perfil se actualizó, ahora es usted un usuario experto");
-							</script>');
-						
-						
-
-						}
-						
-						
-					}elseif($antiguedad > 24 && $numero_votaciones > 50 && $usuario->tipo_usuario->getIdTipoUsuario()==3){
-						
-						if($tipo_usuario->actualizarTipoUsuario(4,$usuario)){
-						$usuario->setTipoUsuario(4);
-						
-							
-						echo('<script type="text/javascript">
-								alert("Su perfil se actualizó, ahora es usted un usuario profesional");
-							</script>');
-						
-							
-						
-							
-							
-						}
-					}elseif($usuario->tipo_usuario->getIdTipoUsuario()==1){
-						
-						
-						require_once("vistas/administrador/administradorVista.php");
-                                        }
-					
-				
-					
+					$resultado=true;
+					                                      
 				}
 				
 				
@@ -868,7 +824,7 @@ class UsuariosModelo {
 	
 			}
 		}
-		return($usuario);
+		return($resultado);
 	}
 	
 }
