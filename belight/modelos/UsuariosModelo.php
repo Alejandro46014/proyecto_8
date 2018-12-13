@@ -236,25 +236,24 @@ class UsuariosModelo {
 		
 
 		$rpassword=$_POST['rpassword']; 
+                
 		$nombre=$this->nombre_usuario;
 		$apellidos=$this->apellidos_usuario;
-		
-		
-		
-		$fecha_nacimiento=$this->fecha_nacimiento_usuario;
-		$fecha_alta=$this->fecha_alta_usuario;
-		
-		/*----------------MAYOR DE EDAD----------------------------*/
-		
-		$diff=strtotime($fecha_alta)-strtotime($fecha_nacimiento);
-		$anys = floor($diff / (365*60*60*24));
-		
-		$pais=$this->pais_usuario;
 		$email=$this->email_usuario;
-		
-		$activo=$this->activo_usuario;
+                $activo=$this->activo_usuario;
 		$tipo_usuario= $this->tipo_usuario->getIdTipoUsuario();
 		$password=$this->password_usuario;
+                
+                $pais=$this->direccion_usuario->getPaisUsuario();
+                $ciudad=$this->direccion_usuario->getCiudadUsuario();
+                $poblacion=$this->direccion_usuario->getPoblacionUsuario();
+                $calle=$this->direccion_usuario->getCalleUsuario();
+                $num_calle=$this->direccion_usuario->getNCalleUsuario();
+                $escalera=$this->direccion_usuario->getEscaleraUsuario();
+                $cp=$this->direccion_usuario->getCpUsuario();
+                $telefono=$this->direccion_usuario->getTelfUsuario();
+		
+		
 		
 		
 		
@@ -278,7 +277,7 @@ class UsuariosModelo {
 			
 		if(empty($nombre) || empty($apellidos) ){//compruebo que el campo este lleno
 			
-			echo '<p>Los campos nombre y apellidos son obligatorios</p>';
+			echo '<p>Los campos nombre y primer apellido son obligatorios</p>';
 			
 			$mal=true;
 		}
@@ -315,33 +314,64 @@ class UsuariosModelo {
 			
 		
 		
-		if(empty($fecha_nacimiento)){//compruebo que el campo este lleno
-			
-			echo '<p>El campo fecha de nacimiento es obligatorio</p>';
-			
-			$mal7=true;
-		}
-		
 			if(empty($email)){//compruebo que el campo este lleno
 				
 				echo '<p>El campo correo electrónico obligatorio</p>';
 			
+			$mal7=true;
+		}
+                        
+                
+                        if(empty($pais)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo pais obligatorio</p>';
+			
 			$mal8=true;
 		}
-					if($anys < 18){//compruebo si el usuario es mayor de edad
-						
-						echo '<script type="text/javascript">
-				alert("Debe ser mayor de edad para darse de alta");
-				</script>';
+                
+                 if(empty($pais)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo pais obligatorio</p>';
 			
 			$mal9=true;
 		}
+                
+                 if(empty($poblacion)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo población obligatorio</p>';
+			
+			$mal10=true;
+		}
+                
+                 if(empty($calle)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo calle obligatorio</p>';
+			
+			$mal11=true;
+		}
+                
+                 if(empty($num_calle)){//compruebo que el campo este lleno
+				
+				echo '<p>Debe introducir un numero de calle obligatorio</p>';
+			
+			$mal12=true;
+		}
+                
+                 if(empty($cp)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo del código postal obligatorio</p>';
+			
+			$mal13=true;
+		}
+	
 		
 			
 			
 			
-		if($mal || $mal1 ||$mal2 || $mal3 || $mal4 || $mal5 ||$mal6 || $mal7 || $mal8 || $mal9){//con cualquiera de las variables añadimos el aviso final o tenemos exito
-			echo '<script type="text/javascript">
+		if($mal || $mal1 ||$mal2 || $mal3 || $mal4 || $mal5 ||$mal6 || $mal7 || $mal8 || $mal9 ||$mal10 || $mal11 || $mal12 || $mal13){//con cualquiera de las variables añadimos el aviso final o tenemos exito
+			
+                    
+                        echo '<script type="text/javascript">
 				alert("Verifique los campos he intentelo de nuevo");
 				</script>';
 			
@@ -350,7 +380,9 @@ class UsuariosModelo {
                   try{
 		$conexion=ConectarModelo::conexion();
                 
-		$sql="INSERT INTO usuarios (nombre_usuario,apellidos_usuario,email_usuario,fecha_nacimiento_usuario,pais_usuario,fecha_alta_usuario,activo_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:nombre,:apellidos,:email,:fecha_nacimiento,:pais,:fecha_alta,:activo,:password,:tipo_usuario)";
+                $conexion->beginTransaction();
+                
+		$sql="INSERT INTO usuarios (nombre_usuario,apellidos_usuario,email_usuario,,activo_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:nombre,:apellidos,:email,:fecha_nacimiento,:pais,:fecha_alta,:activo,:password,:tipo_usuario)";
 		$consulta=$conexion->prepare($sql);
 		
 			$consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
@@ -363,23 +395,23 @@ class UsuariosModelo {
 			$consulta->bindParam(':email',$email,PDO::PARAM_STR);
 			$consulta->bindParam(':tipo_usuario',$tipo_usuario,PDO::PARAM_INT);
 			
-			$resultado=$consulta->execute();
+			$consulta->execute();
+                        
+                        $consulta->closeCursor();
+                        /*-------------------INSERTAR EN TABLA DIRECCIONES------------------------*/
 			
-			
+                        $sql="INSERT INTO direcciones () VALUES ()";
+			$resultado=$conexion->commit();
 			
 			if($resultado){
 				
 				echo('<script type="text/javascript">
 				alert("El usuario se dio de alta correctamente ");
 				</script>');
-			}else{
-				echo('<script type="text/javascript">
-				alert("Hubo un error durante el proceso de alta, contacte con el administrador ");
-				</script>');
 			}
 			
 			
-			$consulta->closeCursor();
+			
 			
 		
 		}catch(PDOException $e){
@@ -387,6 +419,12 @@ class UsuariosModelo {
 			die ("Error ".$e->getMessage());
 			echo("Linea de error ".$e->getLine());
 			
+                        if($conexion->rollBack()){
+                            
+                            echo('<script type="text/javascript">
+				alert("Hubo un error durante el proceso de alta, contacte con el administrador ");
+				</script>');
+                        }
 		}
 		$conexion=null;
 		
