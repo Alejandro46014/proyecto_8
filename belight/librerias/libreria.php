@@ -136,3 +136,13 @@ function recorro($matriz){
 			
        }
 } 
+
+function LetraNIF ($dni) {
+/* Obtiene letra del NIF a partir del DNI */
+  $valor= (int) ($dni / 23);
+  $valor *= 23;
+  $valor= $dni - $valor;
+  $letras= "TRWAGMYFPDXBNJZSQVHLCKEO";
+  $letraNif= substr ($letras, $valor, 1);
+  return $letraNif;
+}
