@@ -7,6 +7,7 @@ class UsuariosModelo {
 	
 	
 	protected $id_usuario;
+        protected $dni_usuario;
 	protected $nombre_usuario;
 	protected $apellidos_usuario;
 	protected $tipo_usuario ;
@@ -24,7 +25,12 @@ class UsuariosModelo {
 	/*---------------getters---------------*/
 	public function getIdUsuario(){
 		
-		return($this->id);
+		return($this->id_usuario);
+	}
+        
+        public function getDniUsuario(){
+		
+		return($this->dni_usuario);
 	}
 	
 	public function getNombreUsuario(){
@@ -65,7 +71,11 @@ class UsuariosModelo {
 	/*-----------------------setters--------------------------*/
 	
 	public function setIdUsuario($id){
-		$this->id=$id;
+		$this->id_usuario=$id;
+	}
+        
+        public function setDniUsuario($dni){
+		$this->dni_usuario=$dni;
 	}
 	
 	public function setNombreUsuario($nombre){
@@ -129,6 +139,7 @@ class UsuariosModelo {
 					$usuario=new UsuariosModelo();
 					
 					$usuario->id_usuario=$fila['id_usuario'];
+                                        $usuario->dni_usuario=$fila['dni_usuario'];
 					$usuario->nombre_usuario=$fila['nombre_usuario'];
 					$usuario->apellidos_usuario=$fila['apellidos_usuario'];
 					$usuario->email_usuario=$fila['email_usuario'];
@@ -194,6 +205,7 @@ class UsuariosModelo {
 			$usuario=new UsuariosModelo();
 					
 					$usuario->id_usuario=$resultado['id_usuario'];
+                                        $usuario->dni_usuario=$resultado['dni_usuario'];
 					$usuario->nombre_usuario=$resultado['nombre_usuario'];
 					$usuario->apellidos_usuario=$resultado['apellidos_usuario'];
 					$usuario->email_usuario=$resultado['email_usuario'];
@@ -237,11 +249,11 @@ class UsuariosModelo {
 
 		$rpassword=$_POST['rpassword']; 
                 
+                $dni=$this->dni_usuario;
 		$nombre=$this->nombre_usuario;
 		$apellidos=$this->apellidos_usuario;
 		$email=$this->email_usuario;
-                $activo=$this->activo_usuario;
-		$tipo_usuario= $this->tipo_usuario->getIdTipoUsuario();
+		$tipo_usuario= $this->tipo_usuario;
 		$password=$this->password_usuario;
                 
                 $pais=$this->direccion_usuario->getPaisUsuario();
@@ -271,6 +283,12 @@ class UsuariosModelo {
 			$mal7=false;
 			$mal8=false;
 			$mal9=false;
+                        $mal10=false;
+			$mal11=false;
+			$mal12=false;
+			$mal13=false;
+			$mal14=false;
+			
 		
 		
 			$patron="/[a-zA-Z\s]/";
@@ -287,20 +305,29 @@ class UsuariosModelo {
 			
 			$mal2=true;
 		}
+                
+                $patron="/^[0-9]{8}[abcdefgxvwrABCDEFGXVWR]$/";//declaro el patron para el dni 
+                
+                if(empty($dni)){
+                    
+                    echo '<p>El campo DNI es obligatorio</p>';
+			
+			$mal3=true;
+                }
 		
 		if(empty($password) || empty($rpassword)){//compruebo el patron ceado para el campo
 			echo("<p>Los campos contraseña y repetir contraseña son obligatorios</p>");
-			$mal3=true;
+			$mal4=true;
 		}
 			if($password!=$rpassword){//compruebo el patron ceado para el campo
 			echo("<p>Los campos contraseña y repetir contraseña no coinciden</p>");
-			$mal4=true;
+			$mal5=true;
 		}
 	$patron="/^(?=.*\d)(?=.*)(?=.*[A-Z])(?=.*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
 		
 		if(!preg_match($patron,$password)){//compruebo que el campo cumpla el patron establecido
 			echo("<p>El campo contraseña no es valido, consulte la leyenda</p>");
-			$mal5=true;
+			$mal6=true;
 		}
 
 		$patron="/[a-zA-Z\s]/";		
@@ -309,7 +336,7 @@ class UsuariosModelo {
 			
 			echo '<p>El campo pais es obligatorio</p>';
 			
-			$mal6=true;
+			$mal7=true;
 		}
 			
 		
@@ -318,7 +345,7 @@ class UsuariosModelo {
 				
 				echo '<p>El campo correo electrónico obligatorio</p>';
 			
-			$mal7=true;
+			$mal8=true;
 		}
                         
                 
@@ -326,49 +353,49 @@ class UsuariosModelo {
 				
 				echo '<p>El campo pais obligatorio</p>';
 			
-			$mal8=true;
+			$mal9=true;
 		}
                 
                  if(empty($pais)){//compruebo que el campo este lleno
 				
 				echo '<p>El campo pais obligatorio</p>';
 			
-			$mal9=true;
+			$mal10=true;
 		}
                 
                  if(empty($poblacion)){//compruebo que el campo este lleno
 				
 				echo '<p>El campo población obligatorio</p>';
 			
-			$mal10=true;
+			$mal11=true;
 		}
                 
                  if(empty($calle)){//compruebo que el campo este lleno
 				
 				echo '<p>El campo calle obligatorio</p>';
 			
-			$mal11=true;
+			$mal12=true;
 		}
                 
                  if(empty($num_calle)){//compruebo que el campo este lleno
 				
 				echo '<p>Debe introducir un numero de calle obligatorio</p>';
 			
-			$mal12=true;
+			$mal13=true;
 		}
                 
                  if(empty($cp)){//compruebo que el campo este lleno
 				
 				echo '<p>El campo del código postal obligatorio</p>';
 			
-			$mal13=true;
+			$mal14=true;
 		}
 	
 		
 			
 			
 			
-		if($mal || $mal1 ||$mal2 || $mal3 || $mal4 || $mal5 ||$mal6 || $mal7 || $mal8 || $mal9 ||$mal10 || $mal11 || $mal12 || $mal13){//con cualquiera de las variables añadimos el aviso final o tenemos exito
+		if($mal || $mal1 ||$mal2 || $mal3 || $mal4 || $mal5 ||$mal6 || $mal7 || $mal8 || $mal9 ||$mal10 || $mal11 || $mal12 || $mal13 || $mal14){//con cualquiera de las variables añadimos el aviso final o tenemos exito
 			
                     
                         echo '<script type="text/javascript">
@@ -382,26 +409,43 @@ class UsuariosModelo {
                 
                 $conexion->beginTransaction();
                 
-		$sql="INSERT INTO usuarios (nombre_usuario,apellidos_usuario,email_usuario,,activo_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:nombre,:apellidos,:email,:fecha_nacimiento,:pais,:fecha_alta,:activo,:password,:tipo_usuario)";
+		$sql="INSERT INTO usuarios (dni_usuario,nombre_usuario,apellidos_usuario,email_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:dni,:nombre,:apellidos,:email,:pais,:password,:tipo_usuario)";
 		$consulta=$conexion->prepare($sql);
 		
+                        $consulta->bindParam(':dni',$dni,PDO::PARAM_STR);
 			$consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-			$consulta->bindParam(':fecha_nacimiento',$fecha_nacimiento,PDO::PARAM_STR);
 			$consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
-			$consulta->bindParam(':fecha_alta',$fecha_alta,PDO::PARAM_STR);
-			$consulta->bindParam(':activo',$activo,PDO::PARAM_STR);
 			$consulta->bindParam(':password',$password,PDO::PARAM_STR);
 			$consulta->bindParam(':email',$email,PDO::PARAM_STR);
 			$consulta->bindParam(':tipo_usuario',$tipo_usuario,PDO::PARAM_INT);
 			
 			$consulta->execute();
                         
+                        $id_usuario=$conexion->lastInsertId();
+                        
                         $consulta->closeCursor();
                         /*-------------------INSERTAR EN TABLA DIRECCIONES------------------------*/
 			
-                        $sql="INSERT INTO direcciones () VALUES ()";
-			$resultado=$conexion->commit();
+                        $sql="INSERT INTO direcciones (usuarios_id_usuario,pais_usuario,ciudad_usuario,poblacion_usuario,calle_usuario,"
+                                . "n_calle_usuario,escalera_usuario,cp_usuario,telefono1_usuario) VALUES (:id_usuario,:pais,:ciudad,:poblacion,:calle,:numero_calle"
+                                . ",:escalera,:cp,:telefono)";
+                        
+                        $consulta=$conexion->prepare($sql);
+                        
+                        $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':pais',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':ciudad',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':poblacion',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':calle',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':numero_calle',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':escalera',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':cp',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':telefono',$id_usuario,PDO::PARAM_INT);
+			
+                        $consulta->execute();
+                        
+                        $resultado=$conexion->commit();
 			
 			if($resultado){
 				
@@ -428,35 +472,33 @@ class UsuariosModelo {
 		}
 		$conexion=null;
 		
-		return($usuario);
+		return($resultado);
 	}
 	}
 	
 	/*--------------------ACTUALIZAR USUARIO---------------------*/
-	public function actualizar($usuario){
+	public function actualizar($id){
             
             require_once("ConectarModelo.php");
 		
-                $id= $usuario->id;
+               
 		$rpassword=$_POST['rpassword']; 
-		$nombre=$usuario->nombre_usuario;
-		$apellidos=$usuario->apellidos_usuario;
-		
-		
-		
-		$fecha_nacimiento=$usuario->fecha_nacimiento_usuario;
-		//$fecha_alta=$this->fecha_alta_usuario;
-		
-		/*----------------MAYOR DE EDAD----------------------------*/
-		
-		$diff=strtotime(date("Y-m-d"))-strtotime($fecha_nacimiento);
-		$anys = floor($diff / (365*60*60*24));
-		
-		$pais=$usuario->pais_usuario;
-		$email=$usuario->email_usuario;
-		
-		
-		$password=$usuario->password_usuario;
+                
+                $dni=$this->dni_usuario;
+		$nombre=$this->nombre_usuario;
+		$apellidos=$this->apellidos_usuario;
+		$email=$this->email_usuario;
+		$tipo_usuario= $this->tipo_usuario;
+		$password=$this->password_usuario;
+                
+                $pais=$this->direccion_usuario->getPaisUsuario();
+                $ciudad=$this->direccion_usuario->getCiudadUsuario();
+                $poblacion=$this->direccion_usuario->getPoblacionUsuario();
+                $calle=$this->direccion_usuario->getCalleUsuario();
+                $num_calle=$this->direccion_usuario->getNCalleUsuario();
+                $escalera=$this->direccion_usuario->getEscaleraUsuario();
+                $cp=$this->direccion_usuario->getCpUsuario();
+                $telefono=$this->direccion_usuario->getTelfUsuario();
 		
 	
 		
@@ -473,13 +515,19 @@ class UsuariosModelo {
 			$mal7=false;
 			$mal8=false;
 			$mal9=false;
+                        $mal10=false;
+			$mal11=false;
+			$mal12=false;
+			$mal13=false;
+			$mal14=false;
+			
 		
 		
 			$patron="/[a-zA-Z\s]/";
 			
 		if(empty($nombre) || empty($apellidos) ){//compruebo que el campo este lleno
 			
-			echo '<p>Los campos nombre y apellidos son obligatorios</p>';
+			echo '<p>Los campos nombre y primer apellido son obligatorios</p>';
 			
 			$mal=true;
 		}
@@ -489,20 +537,29 @@ class UsuariosModelo {
 			
 			$mal2=true;
 		}
-		
-		if(empty($password) || empty($rpassword)){//compruebo que no esten vacios
-			echo("<p>Los campos contraseña y repetir contraseña son obligatorios</p>");
+                
+                $patron="/^[0-9]{8}[abcdefgxvwrABCDEFGXVWR]$/";//declaro el patron para el dni 
+                
+                if(empty($dni)){
+                    
+                    echo '<p>El campo DNI es obligatorio</p>';
+			
 			$mal3=true;
-		}
-			if($password!=$rpassword){//compruebo que no sean diferentes
-			echo("<p>Los campos contraseña y repetir contraseña no coinciden</p>");
+                }
+		
+		if(empty($password) || empty($rpassword)){//compruebo el patron ceado para el campo
+			echo("<p>Los campos contraseña y repetir contraseña son obligatorios</p>");
 			$mal4=true;
+		}
+			if($password!=$rpassword){//compruebo el patron ceado para el campo
+			echo("<p>Los campos contraseña y repetir contraseña no coinciden</p>");
+			$mal5=true;
 		}
 	$patron="/^(?=.*\d)(?=.*)(?=.*[A-Z])(?=.*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
 		
 		if(!preg_match($patron,$password)){//compruebo que el campo cumpla el patron establecido
 			echo("<p>El campo contraseña no es valido, consulte la leyenda</p>");
-			$mal5=true;
+			$mal6=true;
 		}
 
 		$patron="/[a-zA-Z\s]/";		
@@ -511,17 +568,10 @@ class UsuariosModelo {
 			
 			echo '<p>El campo pais es obligatorio</p>';
 			
-			$mal6=true;
-		}
-			
-		
-		
-		if(empty($fecha_nacimiento)){//compruebo que el campo este lleno
-			
-			echo '<p>El campo fecha de nacimiento es obligatorio</p>';
-			
 			$mal7=true;
 		}
+			
+		
 		
 			if(empty($email)){//compruebo que el campo este lleno
 				
@@ -529,20 +579,58 @@ class UsuariosModelo {
 			
 			$mal8=true;
 		}
-					if($anys < 18){//compruebo si el usuario es mayor de edad
-						
-						echo '<script type="text/javascript">
-				alert("Debe ser mayor de edad, esta introduciendo una fecha de nacimiento no autorizada");
-				</script>';
+                        
+                
+                        if(empty($pais)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo pais obligatorio</p>';
 			
 			$mal9=true;
 		}
+                
+                 if(empty($pais)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo pais obligatorio</p>';
+			
+			$mal10=true;
+		}
+                
+                 if(empty($poblacion)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo población obligatorio</p>';
+			
+			$mal11=true;
+		}
+                
+                 if(empty($calle)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo calle obligatorio</p>';
+			
+			$mal12=true;
+		}
+                
+                 if(empty($num_calle)){//compruebo que el campo este lleno
+				
+				echo '<p>Debe introducir un numero de calle obligatorio</p>';
+			
+			$mal13=true;
+		}
+                
+                 if(empty($cp)){//compruebo que el campo este lleno
+				
+				echo '<p>El campo del código postal obligatorio</p>';
+			
+			$mal14=true;
+		}
+	
 		
 			
 			
 			
-		if($mal || $mal1 ||$mal2 || $mal3 || $mal4 || $mal5 ||$mal6 || $mal7 || $mal8 || $mal9){//con cualquiera de las variables añadimos el aviso final o tenemos exito
-			echo '<script type="text/javascript">
+		if($mal || $mal1 ||$mal2 || $mal3 || $mal4 || $mal5 ||$mal6 || $mal7 || $mal8 || $mal9 ||$mal10 || $mal11 || $mal12 || $mal13 || $mal14){//con cualquiera de las variables añadimos el aviso final o tenemos exito
+			
+                    
+                        echo '<script type="text/javascript">
 				alert("Verifique los campos he intentelo de nuevo");
 				</script>';
 			
@@ -552,17 +640,29 @@ class UsuariosModelo {
                   try{
 		$conexion=ConectarModelo::conexion();
                 
-		$sql="UPDATE usuarios SET nombre_usuario=:nombre,apellidos_usuario=:apellidos,fecha_nacimiento_usuario=:fecha_nacimiento,pais_usuario=:pais,password_usuario=:password,email_usuario=:email WHERE id_usuario=:id";
+		$sql="UPDATE `usuarios` INNER JOIN direcciones ON id_usuario=usuarios_id_usuario SET `dni_usuario`=:dni,`nombre_usuario`=:nombre,"
+                        . "`apellidos_usuario`=:apellidos,`email_usuario`=:email,`password_usuario`=:password,pais_usuario=:pais,ciudad_usuario=:ciudad,poblacion_usuario=:poblacion,"
+                        . "calle_usuario=:calle,n_calle_usuario=:numero_calle,escalera_usuario=:escalera,cp_usuario=:cp,telefono1_usuario=:telefono WHERE id_usuario=:id";
 		$consulta=$conexion->prepare($sql);
 		
+			$consulta->bindParam(':dni',$dni,PDO::PARAM_STR);
 			$consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-			$consulta->bindParam(':fecha_nacimiento',$fecha_nacimiento,PDO::PARAM_STR);
 			$consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
-			
 			$consulta->bindParam(':password',$password,PDO::PARAM_STR);
 			$consulta->bindParam(':email',$email,PDO::PARAM_STR);
-                        $consulta->bindParam(':id',$id,PDO::PARAM_STR);
+			$consulta->bindParam(':tipo_usuario',$tipo_usuario,PDO::PARAM_INT);
+                        
+                        
+                        $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':pais',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':ciudad',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':poblacion',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':calle',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':numero_calle',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':escalera',$id_usuario,PDO::PARAM_STR);
+                        $consulta->bindParam(':cp',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':telefono',$id_usuario,PDO::PARAM_INT);
 			
 			
 			$resultado=$consulta->execute();
@@ -572,11 +672,12 @@ class UsuariosModelo {
 			if($resultado){
 				
 				echo('<script type="text/javascript">
-				alert("Sus datos se modificaron correctamente correctamente ");
+				alert("Sus datos se modificaron correctamente ");
 				</script>');
+                               
 			}else{
 				echo('<script type="text/javascript">
-				alert("Hubo un error durante el proceso de alta, contacte con el administrador ");
+				alert("Hubo un error durante el proceso de modificación contacte con el administrador ");
 				</script>');
 			}
 			
@@ -594,8 +695,10 @@ class UsuariosModelo {
 		
 		
 	}
-        return($usuario);
+        return($resultado);
         }
+
+
 
 
         /*------------------DARSE DE BAJA-----------------*/
