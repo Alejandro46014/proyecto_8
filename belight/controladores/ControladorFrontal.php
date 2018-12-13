@@ -38,22 +38,15 @@
 
 				break; 
                             
-                                case 'Imagenes':
+                                case 'Pedidos':
 
-				require_once('modelos/ImagenesModelo.php');
+				require_once('modelos/PedidosModelo.php');
 
-				$controller= new ImagenesControlador();
+				$controller= new PedidosControlador();
 
 				break;
                             
-                            case 'Valoraciones':
-
-				require_once('modelos/ValoracionesModelo.php');
-
-				$controller= new ValoracionesControlador();
-
-				break; 
-
+                           
 
 
 		}
@@ -73,8 +66,8 @@
 						'Usuarios'=>['cerrarSesion','index','registrar','actualizarUsuario','listarUsuarios','listarUsuarioId','modificarUsuario','darseBajaUsuario','crearUsuario','login','loguearse','bajaVista'],
                                                 'Administrador'=>['index','listarUsuarios','listarUsuarioId','actualizarUsuario','modificarUsuario','bloquearUsuario','buscarUsuarios'],
                                                 'Productos'=>['index','listarProductos','listarProductoId','nuevoProducto','guardarProducto','modificarProducto','actualizarProducto','eliminarProducto','buscarProductos'],
-                                                'Imagenes'=>['guardarImagen','eliminarImagen','actualizarImagen','nuevaImagen','modificarImagen'],
-                                                'Valoraciones'=>['listarValoraciones','listarValoracionId','nuevaValoracion','modificarValoracion','bloquearValoracion','desbloquearValoracion','guardarValoracion','buscarValoraciones']
+                                                'Pedidos'=>['guardarPedido','eliminarPedido','actualizarPedido','nuevaPedido'],
+                                               
 
 						);
 
