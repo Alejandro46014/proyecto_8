@@ -2,7 +2,7 @@
 
 class DireccionUsuariosModelo{
     
-    protected $id_direccion,$pais_usuario, $ciudad_usuario, $poblacion_usuario, $calle_usuario,$nº_calle_usuario,$escalera_usuario,
+    private $id_direccion,$pais_usuario, $ciudad_usuario, $poblacion_usuario, $calle_usuario,$nº_calle_usuario,$escalera_usuario,
             $cp_usuario,$telf_usuario;
             
     public function __construct() {
