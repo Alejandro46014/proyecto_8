@@ -253,7 +253,7 @@ class UsuariosModelo {
 		$nombre=$this->nombre_usuario;
 		$apellidos=$this->apellidos_usuario;
 		$email=$this->email_usuario;
-		$tipo_usuario= $this->tipo_usuario;
+		$tipo_usuario= $this->tipo_usuario->getIdTipoUsuario();
 		$password=$this->password_usuario;
                 
                 $pais=$this->direccion_usuario->getPaisUsuario();
@@ -488,7 +488,7 @@ class UsuariosModelo {
 		$nombre=$this->nombre_usuario;
 		$apellidos=$this->apellidos_usuario;
 		$email=$this->email_usuario;
-		$tipo_usuario= $this->tipo_usuario;
+		$tipo_usuario= $this->tipo_usuario->getIdTipoUsuario();
 		$password=$this->password_usuario;
                 
                 $pais=$this->direccion_usuario->getPaisUsuario();
