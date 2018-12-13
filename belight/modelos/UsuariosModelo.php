@@ -6,21 +6,19 @@ require_once 'modelos/DireccionUsuariosModelo.php';
 class UsuariosModelo {
 	
 	
-	protected $id;
+	protected $id_usuario;
 	protected $nombre_usuario;
 	protected $apellidos_usuario;
-	protected $fecha_nacimiento_usuario;
-	protected $pais_usuario;
-	protected $fecha_alta_usuario;
 	protected $tipo_usuario ;
 	protected $activo_usuario;
 	protected $password_usuario;
         protected $email_usuario;
+        protected $direccion_usuario;
 	
 	/*---------constructor*/
 	public function __construct(){
 		
-            $this->tipo_usuario=new TipoUsuarios(2);
+            $this->tipo_usuario=new TipoUsuarios();
 	}
 	
 	/*---------------getters---------------*/
@@ -54,26 +52,14 @@ class UsuariosModelo {
             return $this->password_usuario;
         }
 	
-	
-	public function getFechaNacimientoUsuario(){
-		
-		return($this->fecha_nacimiento_usuario);
-	}
-	
-	
-	public function getPaisUsuario(){
-		
-		return($this->pais_usuario);
-	}
-	
-	public function getFechaAltaUsuario(){
-		
-		return($this->fecha_alta_usuario);
-	}
-	
 	public function getTipoUsuario(){
 		
 		return($this->tipo_usuario);
+	}
+	
+        public function getDireccionUsuario(){
+		
+		return($this->direccion_usuario_usuario);
 	}
 	
 	/*-----------------------setters--------------------------*/
@@ -94,34 +80,10 @@ class UsuariosModelo {
 		$this->apellidos_usuario=$apellidos;
 	}
 	
-	public function setApellido1($apellido){
-		
-		$this->apellido1=$apellido;
-	}
-	public function setApellido2($apellido){
-		
-		$this->apellido2=$apellido;
-	}
 	
-	
-	public function setFechaNacimientoUsuario($fecha_nacimiento){
-		
-		$this->fecha_nacimiento_usuario=$fecha_nacimiento;
-	}
-	
-	
-	public function setPaisUsuario($pais){
-		
-		$this->pais_usuario=$pais;
-	}
 	public function setEmailUsuario($email){
 		
 		$this->email_usuario=$email;
-	}
-	
-	public function setFechaAltaUsuario($fecha_alta){
-		
-		$this->fecha_alta_usuario=$fecha_alta;
 	}
 	
 	public function setTipoUsuario($tipo_usuario){
@@ -137,6 +99,11 @@ class UsuariosModelo {
 		
 		$this->password_usuario=$password;
 	}
+        
+        public function setDireccionUsuario($direccion_usuario){
+		
+		$this->direccion_usuario=$direccion_usuario;
+	}
 	
 	
 
@@ -150,7 +117,7 @@ class UsuariosModelo {
             try{
             $conexion= ConectarModelo::conexion();
 				$listaUsuarios=[];
-            $sql="SELECT * FROM usuarios  INNER JOIN tipo_usuarios ON tipo_usuarios_id_tipo_usuario=id_tipo_usuario ORDER BY id_usuario";
+            $sql="SELECT * FROM usuarios  INNER JOIN tipo_usuarios ON tipo_usuarios_id_tipo_usuario=id_tipo_usuario INNER JOIN direcciones ON id_usuario=usuarios_id_usuario ORDER BY id_usuario";
 				
             $consulta=$conexion->prepare($sql);
             $consulta->execute();
@@ -161,17 +128,27 @@ class UsuariosModelo {
 					
 					$usuario=new UsuariosModelo();
 					
-					$usuario->id=$fila['id_usuario'];
+					$usuario->id_usuario=$fila['id_usuario'];
 					$usuario->nombre_usuario=$fila['nombre_usuario'];
 					$usuario->apellidos_usuario=$fila['apellidos_usuario'];
 					$usuario->email_usuario=$fila['email_usuario'];
-					$usuario->fecha_nacimiento_usuario=$fila['fecha_nacimiento_usuario'];
-					$usuario->pais_usuario=$fila['pais_usuario'];
-					$usuario->fecha_alta_usuario=$fila['fecha_alta_usuario'];
 					$usuario->activo_usuario=$fila['activo_usuario'];
 					$usuario->password_usuario=$fila['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios($fila['tipo_usuarios_id_tipo_usuario']);
+					$usuario->tipo_usuario=new TipoUsuarios();
 					
+                                        $direccion=new DireccionUsuariosModelo();
+                                        
+                                        $direccion->setIdDireccion($fila['id_direccion']);
+                                        $direccion->setPaisUsuario($fila['pais_usuario']);
+                                        $direccion->setCiudadUsuario($fila['ciudad_usuario']);
+                                        $direccion->setPoblacionUsuario($fila['poblacion_usuario']);
+                                        $direccion->setCalleUsuario($fila['calle_usuario']);
+                                        $direccion->setNCalleUsuario($fila['n_calle_usuario']);
+                                        $direccion->setEscaleraUsuario($fila['escalera_usuario']);
+                                        $direccion->setCpUsuario($fila['cp_usuario']);
+                                        $direccion->setTelfUsuario($fila['telefono_usuario']);
+                                        
+                                        $usuario->setDireccionUsuario($direccion);
 					
 			$listaUsuarios[]= $usuario;
 
@@ -202,7 +179,8 @@ class UsuariosModelo {
 		
 		try{
 		$conexion=ConectarModelo::conexion();
-		$sql="SELECT * FROM usuarios WHERE id_usuario=:id ";
+                
+		$sql="SELECT * FROM usuarios INNER JOIN direcciones ON id_usuario=usuarios_id_usuario WHERE id_usuario=:id ";
 		
 			
 		$consulta=$conexion->prepare($sql);
@@ -214,16 +192,28 @@ class UsuariosModelo {
 		$resultado=$consulta->fetch(PDO::FETCH_ASSOC);
 			
 			$usuario=new UsuariosModelo();
-			$usuario->id=$resultado['id_usuario'];
-			$usuario->nombre_usuario=$resultado['nombre_usuario'];
-			$usuario->apellidos_usuario=$resultado['apellidos_usuario'];
-			$usuario->email_usuario=$resultado['email_usuario'];
-			$usuario->fecha_nacimiento_usuario=$resultado['fecha_nacimiento_usuario'];
-			$usuario->pais_usuario=$resultado['pais_usuario'];
-			$usuario->fecha_alta_usuario=$resultado['fecha_alta_usuario'];
-			$usuario->activo_usuario=$resultado['activo_usuario'];
-			$usuario->password_usuario=$resultado['password_usuario'];
-			$usuario->tipo_usuario=new TipoUsuarios( $resultado['tipo_usuarios_id_tipo_usuario']);
+					
+					$usuario->id_usuario=$resultado['id_usuario'];
+					$usuario->nombre_usuario=$resultado['nombre_usuario'];
+					$usuario->apellidos_usuario=$resultado['apellidos_usuario'];
+					$usuario->email_usuario=$resultado['email_usuario'];
+					$usuario->activo_usuario=$resultado['activo_usuario'];
+					$usuario->password_usuario=$resultado['password_usuario'];
+					$usuario->tipo_usuario=new TipoUsuarios();
+					
+                                        $direccion=new DireccionUsuariosModelo();
+                                        
+                                        $direccion->setIdDireccion($resultado['id_direccion']);
+                                        $direccion->setPaisUsuario($resultado['pais_usuario']);
+                                        $direccion->setCiudadUsuario($resultado['ciudad_usuario']);
+                                        $direccion->setPoblacionUsuario($resultado['poblacion_usuario']);
+                                        $direccion->setCalleUsuario($resultado['calle_usuario']);
+                                        $direccion->setNCalleUsuario($resultado['n_calle_usuario']);
+                                        $direccion->setEscaleraUsuario($resultado['escalera_usuario']);
+                                        $direccion->setCpUsuario($resultado['cp_usuario']);
+                                        $direccion->setTelfUsuario($resultado['telefono_usuario']);
+                                        
+                                        $usuario->setDireccionUsuario($direccion);
 			
 			$consulta->closeCursor();
 			
