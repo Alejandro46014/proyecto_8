@@ -1,35 +1,11 @@
 <?php
  
-class UsuariosControlador
+class UsuariosControlador{	
 
-	{	
-
-		public function __construct(){}
-
-
-
-		
-		public function listarUsuarios(){
-			
-			require_once("modelos/UsuariosModelo.php");
-			
-
-			$usuarios=new UsuariosModelo();
-			$usuarios=$usuarios->getTodo();
-			
-			require_once("vistas/usuario/listarUsuariosVista.php");
-		}
-		
-		public function listarUsuarioId(){
-			$id=$_POST['id'];
-			$usuario=new UsuariosModelo();
-			
-			$usuario->setId($id);
-			
-			$usuario=$usuario->getById();
-			
-			require_once("vistas/usuario/listarUsuarioVista.php");
-		}
+		public function __construct(){
+                    
+                    
+                }
 
 
 
@@ -48,55 +24,71 @@ class UsuariosControlador
                     $apellidos=$_POST['apellido1_usuario']." ".$_POST['apellido2_usuario'];
                 
 		$usuario=new UsuariosModelo();
-                $usuario->setNombreUsuario($_POST['nombre_usuario']);
-                $usuario->setApellidosUsuario($apellidos);
-                $usuario->setEmailUsuario($_POST['email_usuario']);
-                $usuario->setFechaNacimientoUsuario($_POST['fecha_nacimiento_usuario']);
-                $usuario->setActivoUsuario("Si");
-                $tipo_usuario=new TipoUsuarios(2);
-                $usuario->setTipoUsuario($tipo_usuario);
-                $usuario->setPaisUsuario($_POST['pais_usuario']);
-                $usuario->setPasswordUsuario($_POST['password_usuario']);
-                $usuario->setFechaAltaUsuario(date("Y-m-d"));
-                
-                
-                $usuario->guardar();
-                        
-                            require_once('vistas/usuario/error.php');
-			//require_once(' vistas/indexVista.php');
-
-		}
-
-
-
-		public function actualizarUsuario($usuario){
-                    
-                    require_once 'modelos/UsuariosModelo.php';
-                    
-                 $apellidos=$_POST['apellidos_usuario'];//." ".$_POST['apellido2_usuario'];
-                
-		
-                $usuario->setNombreUsuario($_POST['nombre_usuario']);
-                $usuario->setApellidosUsuario($apellidos);
-                $usuario->setEmailUsuario($_POST['email_usuario']);
-                $usuario->setFechaNacimientoUsuario($_POST['fecha_nacimiento_usuario']);
-                
-                
-                
-                $usuario->setPaisUsuario($_POST['pais_usuario']);
-                $usuario->setPasswordUsuario($_POST['password_usuario']);
-                
-                
-                
-                $usuario->actualizar($usuario);
-                        
-                            require_once('vistas/usuario/error.php');
 					
-			
+					$usuario->id_usuario=$_POST['id_usuario'];
+                                        $usuario->dni_usuario=$_POST['dni_usuario'];
+					$usuario->nombre_usuario=$_POST['nombre_usuario'];
+					$usuario->apellidos_usuario=$apellidos;
+					$usuario->email_usuario=$$_POST['email_usuario'];
+					$usuario->password_usuario=$_POST['password_usuario'];
+					$usuario->tipo_usuario=new TipoUsuarios();
+					
+                                        $direccion=new DireccionUsuariosModelo();
+                                        
+                                        $direccion->setIdDireccion($_POST['id_direccion']);
+                                        $direccion->setPaisUsuario($_POST['pais_usuario']);
+                                        $direccion->setCiudadUsuario($_POST['ciudad_usuario']);
+                                        $direccion->setPoblacionUsuario($_POST['poblacion_usuario']);
+                                        $direccion->setCalleUsuario($_POST['calle_usuario']);
+                                        $direccion->setNCalleUsuario($_POST['n_calle_usuario']);
+                                        $direccion->setEscaleraUsuario($_POST['escalera_usuario']);
+                                        $direccion->setCpUsuario($_POST['cp_usuario']);
+                                        $direccion->setTelfUsuario($_POST['telefono_usuario']);
+                                        
+                                        $usuario->setDireccionUsuario($direccion);
+                
+                
+                $usuario=$usuario->guardar();
+             
+                if(isset($usuario)){   
+                    
+                require_once 'vistas/usuario/loginVista.php';
+            
+                }else{
+                  
+                  require_once 'vistas/usuario/registrarVista.php';
+              }
+}
 
-			//header('Location: vistas/usuario/indexVista.php');
 
-		}
+
+		public function actualizarUsuario(){
+   
+      if(isset($_GET['id'])){
+                        
+            $id=$_GET['id'];
+            
+            $usuario=new UsuariosModelo();
+            
+         $apellidos=$_POST['apellido1_usuario'] ." ".$_POST['apellido2_usuario'];
+        
+        $usuario->setNombreUsuario($_POST['nombre_usuario']);
+        $usuario->setApellidosUsuario($apellidos);
+        $usuario->setEmailUsuario($_POST['email_usuario']);
+        $usuario->setFechaNacimientoUsuario($_POST['fecha_nacimiento_usuario']);
+        
+        $usuario->setPaisUsuario($_POST['pais_usuario']);
+        $usuario->setPasswordUsuario($_POST['password_usuario']);
+        
+        
+        
+       $usuario->actualizar($id);
+        
+        $controller=new UsuariosControlador();
+        $controller->modificarUsuario();
+                    }
+        
+    }
 
 
 
@@ -128,14 +120,34 @@ class UsuariosControlador
                     $usuarioAccion->setEmailUsuario($_POST['email_usuario']);
                     $usuarioAccion->setPasswordUsuario($_POST['password_usuario']);
                     $usuario=$usuarioAccion->login();
-                    
+                   if(isset($usuario)){ 
+                       
                     session_start();
-                   
+                $_SESSION['login']=TRUE;   
 		$_SESSION['usuario']= $usuario->getIdUsuario();
+               if($usuario->getTipoUsuario()->getTipoUsuario()=="Administrador"){
+                   
+                   require_once 'controladores/AdministradorControlador.php';
                 
+                            
+                    echo '<script type="text/javascript">
+			window.location.assign("index.php");
+			</script>';
+                    
+                    $controller=new AdministradorControlador();
+                    $controller->index();
+                   
+               }else{
+                  
+                    echo '<script type="text/javascript">
+			window.location.assign("index.php");
+			</script>';
+                   
                     $_GET['id']=1;
                     $controller=new ProductosControlador();
                     $controller->index();
+               }  
+                   }
                 }
                 
                 public function bajaVista(){
@@ -145,18 +157,38 @@ class UsuariosControlador
                 }
 
                 public function darseBajaUsuario(){
+                    
+                    if(isset($_GET['id'])){
+                     
+                        if (isset($_POST['cancelar'])){
+                            
+                            echo '<script type="text/javascript">
+			window.location.assign("index.php");
+			</script>';
+                            
+                        }elseif(isset ($_POST['aceptar'])){
+                    
                    $id=$_GET['id'];
-                                $activo='No';
+                                
                                 $usuario=new UsuariosModelo();
-                                $usuario->getById($id);  
-                                $usuario->setActivoUsuario($activo);
-                                $usuario->darseBaja();
-                                require_once 'index.php';
+                                
+                                $usuario->darseBaja($id);
+                          
+                                session_start();
+                               $_SESSION['usuario']="";
+                               $_SESSION['login']=FALSE;
+                               session_destroy();
+                               
+                                echo '<script type="text/javascript">
+			window.location.assign("index.php");
+			</script>';
+                                                
+                    require_once 'controladores/ProductosControlador.php';
+                    $_GET['id']=1;
+                    $controller=new ProductosControlador();
+                    $controller->index();
                 }
-
-                public function buscarUsuarios(){
-                    
-                    
+                    }
                 }
 
                 
@@ -168,12 +200,24 @@ class UsuariosControlador
 
 		} 
                 public function cerrarSesion(){
-                    
-                    session_name("usuario");
+                    session_start();
+                    $_SESSION['usuario']="";
+                    $_SESSION['login']=FALSE;
                     session_destroy();
+                    $_SESSION['usuario']="";
+                    $_SESSION['login']=FALSE;
                     
-                    require_once 'vistas/usuario/registrarVista.php';
+                    echo '<script type="text/javascript">
+			window.location.assign("index.php");
+			</script>';
+                                                
+                    require_once 'controladores/ProductosControlador.php';
+                    $_GET['id']=1;
+                    $controller=new ProductosControlador();
+                    $controller->index();
                 }
+
+	
 
 	}
 
@@ -189,27 +233,17 @@ class UsuariosControlador
 
 		//se añade el archivo usuario.php
 
-		require_once('../modelos/UsuariosModelo.php');
+		require_once('modelos/UsuariosModelo.php');
 
 		
 
 		//se añade el archivo para la conexion
 
-		require_once('../modelos/ConectarModelo.php');
+		require_once('modelos/ConectarModelo.php');
 
 
 
-		if ($_POST['action']=='borrar') {
-
-			
-
-		}elseif ($_POST['action']=='actualizar') {
-
-			$usuario= new UsuariosModelo();
-                        $usuario->setIdUsuario($_POST['id']);
-			$usuarioController->actualizarUsuario($usuario->getIdUsuario());
-
-		}		
+		
 
 	}
 
@@ -217,45 +251,6 @@ class UsuariosControlador
 
 	//se verifica que action esté definida
 
-	if (isset($_GET['action'])) {
-
-		if ($_GET['action']!='registrar' & $_GET['action']!='index') {
-
-			require_once('modelos/ConectarModelo.php');
-
-			$usuarioController=new UsuariosControlador();
-
-			//para eliminar
-
-			/*if($_GET['action']=='darseBajaUsuario') {		
-                            
-                            require_once('modelos/UsuariosModelo.php');
-                            
-                                $id=$_GET['id'];
-                                
-                                $usuario=new UsuariosModelo();
-                                $usuario->getById($id);
-                                $usuarioController->darseBajaUsuario($usuario);
-
-                        }else*/if ($_GET['action']=='actualizarUsuario') {//mostrar la vista update con los datos del registro actualizar
-
-				require_once('modelos/UsuariosModelo.php');				
-
-				$id=$_GET['id'];
-                                
-                                $usuario=new UsuariosModelo();
-                               $usuario->getById($id);
-                                $usuarioController->actualizarUsuario($usuario);
-				//var_dump($usuario);
-
-				//$usuarioController->actualizar();
-
-				//require_once('vistas/usuario/error.php');
-
-			}	
-
-		}	
-
-	}
+	
 
 
