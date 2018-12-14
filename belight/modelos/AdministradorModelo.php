@@ -44,7 +44,7 @@ class AdministradorModelo extends UsuariosModelo{
 					$usuario->apellidos_usuario=$fila['apellidos_usuario'];
 					$usuario->email_usuario=$fila['email_usuario'];
 					$usuario->password_usuario=$fila['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios();
+					$usuario->tipo_usuario=new TipoUsuarios($fila['tipo_usuarios_id_tipo_usuario']);
 					
                                         $direccion=new DireccionUsuariosModelo();
                                         

@@ -144,7 +144,7 @@ class UsuariosModelo {
 					$usuario->apellidos_usuario=$fila['apellidos_usuario'];
 					$usuario->email_usuario=$fila['email_usuario'];
 					$usuario->password_usuario=$fila['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios();
+					$usuario->tipo_usuario=new TipoUsuarios($fila['tipo_usuarios_id_tipo_usuario']);
 					
                                         $direccion=new DireccionUsuariosModelo();
                                         
@@ -210,7 +210,7 @@ class UsuariosModelo {
 					$usuario->email_usuario=$resultado['email_usuario'];
 					$usuario->activo_usuario=$resultado['activo_usuario'];
 					$usuario->password_usuario=$resultado['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios();
+					$usuario->tipo_usuario=new TipoUsuarios($resultado[tipo_usuarios_id_tipo_usuario]);
 					
                                         $direccion=new DireccionUsuariosModelo();
                                         
