@@ -185,7 +185,7 @@ class ProductosModelo{
 		
 		
 		require_once("ConectarModelo.php");
-                require_once("ImagenesModelo.php");
+              
 		
 		try{
 			$conexion=ConectarModelo::conexion();
