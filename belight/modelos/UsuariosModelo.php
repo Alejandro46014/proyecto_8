@@ -19,7 +19,7 @@ class UsuariosModelo {
 	/*---------constructor*/
 	public function __construct(){
 		
-            $this->tipo_usuario=new TipoUsuarios();
+            $this->tipo_usuario=new TipoUsuarios(2);
 	}
 	
 	/*---------------getters---------------*/
