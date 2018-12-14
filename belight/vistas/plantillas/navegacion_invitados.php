@@ -17,7 +17,7 @@
 			<div class="extendido-usuarios">
 				<a  href="?controller=Usuarios&action=modificarPerfil">Modificar perfil</a>
    				<a  href="?controller=Usuarios&action=bajaVista">Darse de baja</a>
-    			<a  href="?controller=Usuarios&action=cerrarSesion">Cerrar sesión</a>
+                                <a  href="?controller=Usuarios&action=cerrarSesion">Cerrar sesión</a>
 				
  			 </div>
 	</div><!--.contenedor+clearfix-->
