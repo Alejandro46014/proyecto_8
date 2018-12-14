@@ -422,7 +422,7 @@ class ProductosModelo{
         
        
         
-        $sql="SELECT * FROM productos WHERE categorias_productos_id_categoria=:categoria ORDER BY id_producto";
+        $sql="SELECT * FROM productos WHERE categorias_id_categoria=:categoria ORDER BY id_producto";
         $consulta=$conexion->prepare($sql);
         
         $consulta->bindParam(':categoria',$id_categoria,PDO::PARAM_STR);
