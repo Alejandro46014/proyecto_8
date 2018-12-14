@@ -6,11 +6,17 @@ class TipoUsuarios{
     private  $tipo_usuario;
     private $descripcion;
     
-    public function __construct() {
+    public function __construct($id_tipo_usuario) {
       
-        $this->id_tipo_usuario=2;
+        $this->id_tipo_usuario=$id_tipo_usuario;
+        if($id_tipo_usuario==2){
         $this->tipo_usuario="Usuario standar";
 
+        }elseif($id_tipo_usuario==1){
+            
+           $this->tipo_usuario="Administrador";
+           
+        }
     }
     
     /*-------------------SGETTERS--------------------*/
