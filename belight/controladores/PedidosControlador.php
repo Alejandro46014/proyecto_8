@@ -35,7 +35,7 @@ class PedidosControlador{
            $id_producto=$_GET['id'];
            $producto=new ProductosModelo();
            $producto=$producto->getById($id_producto);
-           $id_usuario=$_POST['id_usuario'];
+           $id_usuario=$_GET['usuario'];
            $usuario=new UsuariosModelo();
            $usuario=$usuario->getById($id_usuario);
            $cantidad=$_POST['cantidad_producto'];
