@@ -29,8 +29,29 @@
       </div>
       <?php if($_SESSION['login']==true){ ?>
       <div class='item_desc'>
-          <a href='?controller=Pedidos&action=guardarPedido&id=<?php echo $producto->getIdProducto();?>&usuario=<?php echo $usuario->getIdUsuario();  ?>' class='buttom_green'>Añadir al carrito</a>
-    </div>
+          <form action="?controller=Pedidos&action=guardarPedido&id=<?php echo $producto->getIdProducto();?>" method="post">
+              
+              <div class="item_price">
+                  <select name="cantidad_producto">
+                      
+                      <option value="" selected>Cantidad</option>
+                      <?php $i=1;
+                    while ($i>=11){
+                        echo '<option value="'.$i.'">'.$i.'</option>';
+                        
+                        $i++;
+                    }
+                      ?>
+                  </select>
+              </div>
+              
+              <input type="hidden" name="id_usuario" value="<?php echo $usuario->getIdUsuario();  ?>"/>
+              
+              <div class="col_formulario">
+                  <input type="submit" class="buttom_green" value="Añadir al carrito" name="guardar_pedido"/>
+              </div>
+          </form>
+      </div>
       <?php  } ?>
     </div><!--.item_box-->
     <?php }  ?>
