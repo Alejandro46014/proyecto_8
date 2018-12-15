@@ -29,7 +29,7 @@
       </div>
       <?php if($_SESSION['login']==true){ ?>
       <div class='item_desc'>
-          <a href='?controller=Pedidos&action=guardarPedido&id=<?php echo $producto->getIdProducto();?>&usuario=<?php echo $usuario->getIdUsuario();  ?>' class='buttom_green'>Valorar</a>
+          <a href='?controller=Pedidos&action=guardarPedido&id=<?php echo $producto->getIdProducto();?>&usuario=<?php echo $usuario->getIdUsuario();  ?>' class='buttom_green'>Añadir al carrito</a>
     </div>
       <?php  } ?>
     </div><!--.item_box-->
