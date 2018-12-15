@@ -197,6 +197,12 @@ nav.navegacion-principal{
 	width: 100%;
 }
 
+nav.navegacion-principal a.iniciar_sesion{
+    
+    
+    background-color: #289C24;
+    color: #ffffff;
+}
 nav.navegacion-principal a{
 	font-family: 'asap', sans-serif;
 	color: #0033ff;
@@ -215,6 +221,12 @@ nav.navegacion-principal a{
 	
 }
 
+nav.navegacion-principal a.iniciar_sesion:hover{
+    
+    background-color: #7DF56A;
+    font-weight: bold;
+}
+
 nav.navegacion-principal a:hover{
 		color: #ffffff;
 		background-color: #00ccff;
@@ -229,6 +241,13 @@ nav.navegacion-principal a:hover{
 		text-align: left;
 		display: block;
 	}
+        
+        nav.navegacion-principal a.iniciar_sesion{
+    
+    margin-left: 40px;
+    margin-right: 20px;
+    
+}
 	
 	/*nav.navegacion-principal a{
 		
