@@ -322,7 +322,8 @@ class UsuariosModelo {
 			echo("<p>Los campos contraseña y repetir contraseña no coinciden</p>");
 			$mal5=true;
 		}
-	$patron="/^(?=.*\d)(?=.*)(?=.*[A-Z])(?=.*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
+                
+	$patron="/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
 		
 		if(!preg_match($patron,$password)){//compruebo que el campo cumpla el patron establecido
 			echo("<p>El campo contraseña no es valido, consulte la leyenda</p>");
@@ -554,7 +555,7 @@ class UsuariosModelo {
 			echo("<p>Los campos contraseña y repetir contraseña no coinciden</p>");
 			$mal5=true;
 		}
-	$patron="/^(?=.*\d)(?=.*)(?=.*[A-Z])(?=.*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
+	$patron="/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
 		
 		if(!preg_match($patron,$password)){//compruebo que el campo cumpla el patron establecido
 			echo("<p>El campo contraseña no es valido, consulte la leyenda</p>");
