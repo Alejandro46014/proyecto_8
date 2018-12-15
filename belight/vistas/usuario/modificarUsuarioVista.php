@@ -3,8 +3,8 @@
    
 <div class="formulario clearfix">
     <div class="cabecera_formularios">
-        <h3>Formulario de alta en la web</h3>
-    <form method="post" action="?controller=Usuarios&action=crearUsuario">
+        <h3>Modificar perfil</h3>
+    <form method="post" action="?controller=Usuarios&action=actualizarUsuario&id=<?php echo $usuario->getIdUsuario();  ?>">
         </div>
     <div class="col_2_formulario">
     
@@ -46,19 +46,24 @@
         <h4>Dirección</h4>
     </div>
     
-    <div class="col_3_formulario">
+    <div class="col_4_formulario">
     
    <label for="calle"> * Calle: <input type="text" name="calle_usuario" required="true" id="calle" value="<?php echo $usuario->getDireccionUsuario()->getCalleUsuario(); ?>"/></label>
 </div>
     
-    <div class="col_3_formulario">
+    <div class="col_4_formulario">
     
    <label for="n_calle"> * Numero de portal: <input type="text" name="n_calle_usuario" required="true" id="n_calle" value="<?php echo $usuario->getDireccionUsuario()->getNCalleUsuario(); ?>"/></label>
 </div>
     
-    <div class="col_3_formulario">
+    <div class="col_4_formulario">
     
    <label for="escalera">  Escalera: <input type="text" name="escalera_usuario"  id="escalera" value="<?php echo $usuario->getDireccionUsuario()->getEscaleraUsuario(); ?>"/></label>
+</div>
+    
+    <div class="col_4_formulario">
+    
+        <label for="cp"> * Código postal: <input type="text" name="cp_usuario" required="true" id="cp" value="<?php echo $usuario->getDireccionUsuario()->getCpUsuario(); ?>"/>
 </div>
     
     <div class="col_3_formulario">
@@ -73,7 +78,7 @@
 
    <div class="col_3_formulario">
     
-           <label for="pais"> * Pais: <input type="text" name="pais_usuario" id="pais" value="<?php echo $_POST["pais_usuario"]; ?>"/></label>
+           <label for="pais"> * Pais: <input type="text" name="pais_usuario" id="pais" value="<?php echo $usuario->getDireccionUsuario()->getPaisUsuario(); ?>"/></label>
     </div>
         
         <div class="col_formulario">

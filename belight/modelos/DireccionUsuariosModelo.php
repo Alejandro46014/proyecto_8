@@ -44,7 +44,7 @@ class DireccionUsuariosModelo{
     }
     
     public function setTelfUsuario($telf_usuario) {
-        $this->cp_usuario = $telf_usuario;
+        $this->telf_usuario = $telf_usuario;
     }
     
     /*-------------------------GETTERS-------------------------*/

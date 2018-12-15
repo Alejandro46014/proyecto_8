@@ -221,7 +221,7 @@ class UsuariosModelo {
                                         $direccion->setNCalleUsuario($resultado['n_calle_usuario']);
                                         $direccion->setEscaleraUsuario($resultado['escalera_usuario']);
                                         $direccion->setCpUsuario($resultado['cp_usuario']);
-                                        $direccion->setTelfUsuario($resultado['telefono_usuario']);
+                                        $direccion->setTelfUsuario($resultado['telefono1_usuario']);
                                         
                                         $usuario->setDireccionUsuario($direccion);
 			
@@ -486,7 +486,7 @@ class UsuariosModelo {
 		$nombre=$this->nombre_usuario;
 		$apellidos=$this->apellidos_usuario;
 		$email=$this->email_usuario;
-		$tipo_usuario= $this->tipo_usuario->getIdTipoUsuario();
+		
 		$password=$this->password_usuario;
                 
                 $pais=$this->direccion_usuario->getPaisUsuario();
@@ -646,21 +646,21 @@ class UsuariosModelo {
 			$consulta->bindParam(':dni',$dni,PDO::PARAM_STR);
 			$consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-			$consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
+			$consulta->bindParam(':id',$id,PDO::PARAM_INT);
 			$consulta->bindParam(':password',$password,PDO::PARAM_STR);
 			$consulta->bindParam(':email',$email,PDO::PARAM_STR);
-			$consulta->bindParam(':tipo_usuario',$tipo_usuario,PDO::PARAM_INT);
+			
                         
                         
-                        $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':pais',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':ciudad',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':poblacion',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':calle',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':numero_calle',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':escalera',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':cp',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':telefono',$id_usuario,PDO::PARAM_INT);
+                        
+                        $consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
+                        $consulta->bindParam(':ciudad',$ciudad,PDO::PARAM_STR);
+                        $consulta->bindParam(':poblacion',$poblacion,PDO::PARAM_STR);
+                        $consulta->bindParam(':calle',$calle,PDO::PARAM_STR);
+                        $consulta->bindParam(':numero_calle',$num_calle,PDO::PARAM_INT);
+                        $consulta->bindParam(':escalera',$escalera,PDO::PARAM_STR);
+                        $consulta->bindParam(':cp',$cp,PDO::PARAM_INT);
+                        $consulta->bindParam(':telefono',$telefono,PDO::PARAM_INT);
 			
 			
 			$resultado=$consulta->execute();

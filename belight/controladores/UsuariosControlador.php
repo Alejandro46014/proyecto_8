@@ -66,6 +66,8 @@ class UsuariosControlador{
 
 		public function actualizarUsuario(){
    
+                    require_once 'controladores/ProductosControlador.php';
+                    
       if(isset($_GET['id'])){
                         
             $id=$_GET['id'];
@@ -74,17 +76,17 @@ class UsuariosControlador{
                 
 		$usuario=new UsuariosModelo();
 					
-					$usuario->id_usuario=$_POST['id_usuario'];
-                                        $usuario->dni_usuario=$_POST['dni_usuario'];
-					$usuario->nombre_usuario=$_POST['nombre_usuario'];
-					$usuario->apellidos_usuario=$apellidos;
-					$usuario->email_usuario=$$_POST['email_usuario'];
-					$usuario->password_usuario=$_POST['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios();
+					
+                                        $usuario->setDniUsuario($_POST['dni_usuario']);
+					$usuario->setNombreUsuario($_POST['nombre_usuario']);
+					$usuario->setApellidosUsuario($apellidos);
+					$usuario->setEmailUsuario($_POST['email_usuario']);
+					$usuario->setPasswordUsuario($_POST['password_usuario']);
+					
 					
                                         $direccion=new DireccionUsuariosModelo();
                                         
-                                        $direccion->setIdDireccion($_POST['id_direccion']);
+                                        
                                         $direccion->setPaisUsuario($_POST['pais_usuario']);
                                         $direccion->setCiudadUsuario($_POST['ciudad_usuario']);
                                         $direccion->setPoblacionUsuario($_POST['poblacion_usuario']);
@@ -96,13 +98,18 @@ class UsuariosControlador{
                                         
                                         $usuario->setDireccionUsuario($direccion);
         
+                                      
         
-        
-       $usuario->actualizar($id);
-        
+       $res=$usuario->actualizar($id);
+       if ($res){
+           $_GET['id']=1;
+           $controller=new ProductosControlador();
+           $controller->index();
+       }else{
+           
         $controller=new UsuariosControlador();
         $controller->modificarUsuario();
-                    }
+       }       }
         
     }
 
