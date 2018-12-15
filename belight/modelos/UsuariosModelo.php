@@ -208,7 +208,6 @@ class UsuariosModelo {
 					$usuario->nombre_usuario=$resultado['nombre_usuario'];
 					$usuario->apellidos_usuario=$resultado['apellidos_usuario'];
 					$usuario->email_usuario=$resultado['email_usuario'];
-					$usuario->activo_usuario=$resultado['activo_usuario'];
 					$usuario->password_usuario=$resultado['password_usuario'];
 					$usuario->tipo_usuario=new TipoUsuarios($resultado[tipo_usuarios_id_tipo_usuario]);
 					
