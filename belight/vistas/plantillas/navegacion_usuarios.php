@@ -14,7 +14,7 @@
                         <a href="?controller=Productos&action=index&id=4">NineBots</a> 
 			<a href="?controller=Productos&action=index&id=5">Monociclos</a>
 			<a href="?controller=Productos&action=index&id=6">HoverBoards</a> 
-			<a class="user-icono" href="#"><i class="fas fa-user"></i><spam>Alejandro</spam></a>
+			<a class="user-icono" href="#"><i class="fas fa-user"></i><spam><?php echo $usuario->getNombreUsuario();  ?></spam></a>
                
 		<div class="extendido-usuarios">
 			<a  href="?controller=Usuarios&action=modificarPerfil">Modificar perfil</a>
