@@ -793,8 +793,8 @@ class UsuariosModelo {
 				$consulta->bindParam(':password',$password_usuario,PDO::PARAM_STR);
 				
 				$consulta->execute();
-				
 				$resultado=$consulta->fetch(PDO::FETCH_ASSOC);
+				
 				
 				
 				$numero_filas=$consulta->rowCount();
@@ -810,8 +810,9 @@ class UsuariosModelo {
 				</script>');
 					
 				}elseif($numero_filas==1){
-					
-					$resultado=true;
+                                    
+					$usuario=new UsuariosModelo();
+                                        $usuario=$usuario->getById($resultado['id_usuario']);
 					                                      
 				}
 				
@@ -824,7 +825,7 @@ class UsuariosModelo {
 	
 			}
 		}
-		return($resultado);
+		return($usuario);
 	}
 	
 }
