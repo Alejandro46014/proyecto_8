@@ -15,18 +15,7 @@ body{
 
 /*----------------GENERALES------------------*/
 
-a:link {
-  color: red;
-}
-a:visited {
-  color: green;
-}
-a:hover {
-  color: #ffffff;;
-}
-a:active {
-  color: #ffffff;
-}
+
 
 .activo{
     color: #ffffff;
@@ -389,8 +378,8 @@ div.extendido-usuarios{
 	border-top-right-radius: 5px; 
 	border-top-left-radius: 5px;
 	position: relative;
-	left:90%;
-	top:57px;
+	left:  85%;
+	
 	
 }
 	div.registro_inicio{
@@ -586,6 +575,14 @@ div.col_3_formulario select{
 	margin: 20px auto;
 }
 
+div.col_4_formulario input,
+div.col_4_formulario select{
+	
+	width: 90%;
+	display: block;
+	margin: 20px auto;
+}
+
 @media only screen and (max-width:600px){
 	
 	div.col_3_formulario input,
@@ -659,6 +656,13 @@ div.col_3_formulario label{
 	div.col_3_formulario{
 		
 		width: 33.3%;
+		margin: 0 auto;
+		float: left;
+	}
+        
+        div.col_4_formulario{
+		
+		width: 25%;
 		margin: 0 auto;
 		float: left;
 	}
