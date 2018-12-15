@@ -1,5 +1,5 @@
 <div class="barra">
-		<div class="contenedor clearfix">
+		<div class="barra_contenedor clearfix">
 	
 		<div class="menu-movil">
 			<span></span>
@@ -13,13 +13,10 @@
                         <a href="?controller=Productos&action=index&id=4">NineBots</a> 
 			<a href="?controller=Productos&action=index&id=5">Monociclos</a>
 			<a href="?controller=Productos&action=index&id=6">HoverBoards</a> 
-			<a class="user-icono" href="#"><i class="fas fa-user"></i><spam>Alejandro</spam></a></nav>
-			<div class="extendido-usuarios">
-				<a  href="?controller=Usuarios&action=modificarPerfil">Modificar perfil</a>
-   				<a  href="?controller=Usuarios&action=bajaVista">Darse de baja</a>
-                                <a  href="?controller=Usuarios&action=cerrarSesion">Cerrar sesión</a>
-				
- 			 </div>
+                        <a class="iniciar_sesion" href="?controller=Usuarios&action=login">Iniciar sesión</a>
+                        <a href="?controller=Usuarios&action=registrar">Registrarse</a>
+                </nav>
+			
 	</div><!--.contenedor+clearfix-->
 </div><!--.barra-->
 
