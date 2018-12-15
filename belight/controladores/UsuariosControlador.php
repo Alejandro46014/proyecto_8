@@ -130,17 +130,24 @@ class UsuariosControlador{
                 
                 public function loguearse(){
                     require_once 'controladores/ProductosControlador.php';
+                    require_once 'controladores/UsuariosControlador.php';
+                    require_once 'controladores/AdministradorControlador.php';
                     require_once 'modelos/ProductosModelo.php';
+                    
+                    echo $_POST['email_usuario'];
+                    echo $_POST['password_usuario'];
+                    
                     $usuarioAccion=new UsuariosModelo();
                     $usuarioAccion->setEmailUsuario($_POST['email_usuario']);
                     $usuarioAccion->setPasswordUsuario($_POST['password_usuario']);
                     $usuario=$usuarioAccion->login();
-                   if($resultado){ 
+                    
+                   if(isset($usuario)){ 
                        
                     session_start();
                 $_SESSION['login']=TRUE;   
 		$_SESSION['usuario']= $usuario->getIdUsuario();
-               if($usuario->getTipoUsuario()->getTipoUsuario()=="Administrador"){
+             if($usuario->getTipoUsuario()->getTipoUsuario()=="Administrador"){
                    
                    require_once 'controladores/AdministradorControlador.php';
                 
@@ -164,7 +171,6 @@ class UsuariosControlador{
                }  
                    }
                 }
-                
                 public function bajaVista(){
                     $usuario=new UsuariosModelo();
                     $usuario=$usuario->getById($_GET['id']);
