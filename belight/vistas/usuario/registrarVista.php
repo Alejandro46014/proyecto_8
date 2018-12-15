@@ -1,5 +1,6 @@
 
 <section class="seccion">
+    <div id="box">
 <div class="formulario clearfix">
     <div class="cabecera_formularios">
         <h3>Formulario de alta en la web</h3>
@@ -23,7 +24,7 @@
     </div>
     <div class="col_2_formulario">
     
-           <label for="password"> * Contraseña: <input type="password_usuario" name="password_usuario" required="true" id="password" value="<?php echo $_POST["password_usuario"]; ?>"/></label>
+           <label for="password"> * Contraseña: <input type="password" name="password_usuario" required="true" id="password" value="<?php echo $_POST["password_usuario"]; ?>"/></label>
     </div>
    <div class="col_2_formulario">
     
@@ -32,7 +33,7 @@
     
     <div class="col_2_formulario">
     
-        <label for="dni"> * DNI: <input type="text" name="dni_usuario" required="true" id="dni" <?php echo $_POST["dni_usuario"]; ?>"></label>
+        <label for="dni"> * DNI: <input type="text" name="dni_usuario" required="true" id="dni" value="<?php echo $_POST["dni_usuario"]; ?>"></label>
 </div>
     
     <div class="col_2_formulario">
@@ -88,6 +89,4 @@
 </div>
     </div>
 
-
-</div>
 </section>

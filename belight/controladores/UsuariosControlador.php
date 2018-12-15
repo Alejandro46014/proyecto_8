@@ -26,13 +26,14 @@ class UsuariosControlador{
                 
 		$usuario=new UsuariosModelo();
 					
-					$usuario->id_usuario=$_POST['id_usuario'];
-                                        $usuario->dni_usuario=$_POST['dni_usuario'];
-					$usuario->nombre_usuario=$_POST['nombre_usuario'];
-					$usuario->apellidos_usuario=$apellidos;
-					$usuario->email_usuario=$$_POST['email_usuario'];
-					$usuario->password_usuario=$_POST['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios();
+					
+                                        $usuario->setDniUsuario($_POST['dni_usuario']);
+					$usuario->setNombreUsuario($_POST['nombre_usuario']);
+					$usuario->setApellidosUsuario($apellidos);
+					$usuario->setEmailUsuario($_POST['email_usuario']);
+					$usuario->setPasswordUsuario($_POST['password_usuario']);
+                                        $tipo_usuario=new TipoUsuarios(2);
+					$usuario->setTipoUsuario($tipo_usuario);
 					
                                         $direccion=new DireccionUsuariosModelo();
                                         

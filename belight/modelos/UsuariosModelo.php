@@ -65,7 +65,7 @@ class UsuariosModelo {
 	
         public function getDireccionUsuario(){
 		
-		return($this->direccion_usuario_usuario);
+		return($this->direccion_usuario);
 	}
 	
 	/*-----------------------setters--------------------------*/
@@ -408,13 +408,12 @@ class UsuariosModelo {
                 
                 $conexion->beginTransaction();
                 
-		$sql="INSERT INTO usuarios (dni_usuario,nombre_usuario,apellidos_usuario,email_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:dni,:nombre,:apellidos,:email,:pais,:password,:tipo_usuario)";
+		$sql="INSERT INTO usuarios (dni_usuario,nombre_usuario,apellidos_usuario,email_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:dni,:nombre,:apellidos,:email,:password,:tipo_usuario)";
 		$consulta=$conexion->prepare($sql);
 		
                         $consulta->bindParam(':dni',$dni,PDO::PARAM_STR);
 			$consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-			$consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
 			$consulta->bindParam(':password',$password,PDO::PARAM_STR);
 			$consulta->bindParam(':email',$email,PDO::PARAM_STR);
 			$consulta->bindParam(':tipo_usuario',$tipo_usuario,PDO::PARAM_INT);

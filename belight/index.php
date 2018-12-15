@@ -61,7 +61,7 @@ require_once 'modelos/UsuariosModelo.php';
             
           require_once 'vistas/plantillas/navegacion_administrador.php';
           
-        }elseif(isset($_SESSION['usuario'])){
+        }elseif(isset($_SESSION['usuario']) && $_SESSION['login']==TRUE){
            // session_start();
             //$id= $_SESSION['usuario'];
             $usuario=$usuario->getById($id);

@@ -1,78 +1,92 @@
-<?php  require_once("includes/header.php"); ?>
-
-<?php  require_once("includes/navegacion_administrador.php"); ?>
-
-<!--CONTENIDO-->
-
+<?php $apellidos=explode(" ", $usuario->getApellidosUsuario()); ?>
 <section class="seccion">
+   
 <div class="formulario clearfix">
-	<div class="cabecera_formularios">
-		<h3>Modificar usuario</h3>
-	<form method="post" action="?controller=Usuario&action=actualizarUsuario&id=<?php //echo $usuario->getIdUsuario(); ?>">
-		</div>
-	<div class="col_2_formulario">
-	
-            <label for="nombre">Nombre<input type="text" name="nombre_usuario" id="nombre" value="<?php //echo $usuario->getNombreUsuario(); ?>"/></label>
-	</div>
-	<div class="col_2_formulario">
-	
-             <label for="apellidos">Apellidos<input type="text" name="apellidos_usuario" id="apellidos" value="<?php //echo $usuario->getApellidosUsuario(); ?>"/></label>
-	</div>
-		<div class="col_2_formulario">
-	
-            <label for="email">Correo electrónico<input type="email" name="email_usuario" id="email" value="<?php //echo $usuario->getEmailUsuario(); ?>"/></label>
-	</div>
-		<div class="col_2_formulario">
-	
-            <label for="pais">Pais<input type="text" name="pais_usuario" id="pais" value="<?php //echo $usuario->getPaisUsuario(); ?>"/></label>
-	</div>
-		<div class="col_2_formulario">
-	
-            <label for="fecha_nacimiento">Fecha de nacimiento<input type="date" name="fecha_nacimiento_usuario" id="fecha_nacimiento" value="<?php //echo $usuario->getFechaNacimientoUsuario(); ?>"/></label>
-	</div>
-		<?php if($usuario->getTipoUsuario()->getTipoUsuario()=="Usuario_novel"){  ?>
-		<div class="col_2_formulario">
-		<label for="tipo_usuario" >Tipo Usuario:<br>
-                <select name="tipo_usuario" class="tipo_usuario">
-                    <option value="">--Tipo usuario--</option>
-                    <option value="2" selected>Usuario novel</option>
-                    <option value="3">Usuario experto</option>
-                    <option value="4">Usuario profesional</option>
-                    
-                </select>
-            </label>
-			<?php }elseif($usuario->getTipoUsuario()->getTipoUsuario()=="Usuario_experto"){  ?>
-			
-			<label for="tipo_usuario" >Tipo Usuario:<br>
-                <select name="tipo_usuario" class="tipo_usuario">
-                    <option value="">--Tipo usuario--</option>
-                    <option value="2">Usuario novel</option>
-                    <option value="3" selected>Usuario experto</option>
-                    <option value="4">Usuario profesional</option>
-                    
-                </select>
-            </label>
-			
-			<?php }elseif($usuario->getTipoUsuario()->getTipoUsuario()=="Usuario_profesional"){  ?>
-			
-			<label for="tipo_usuario" >Tipo Usuario:<br>
-                <select name="tipo_usuario" class="tipo_usuario">
-                    <option value="">--Tipo usuario--</option>
-                    <option value="2">Usuario novel</option>
-                    <option value="3">Usuario experto</option>
-                    <option value="4" selected>Usuario profesional</option>
-                    
-                </select>
-            </label>
-			
-			<?php  } ?>
-		</div>
-		<div class="col_formulario">
-			<input type="submit" name="actualizar" value="Actualizar" class="buttom_green"/>
-		</div>	
-	</div>
+    <div class="cabecera_formularios">
+        <h3>Formulario de alta en la web</h3>
+    <form method="post" action="?controller=Usuarios&action=crearUsuario">
+        </div>
+    <div class="col_2_formulario">
+    
+           <label for="nombre">* Nombre: <input type="text" name="nombre_usuario" required="true" id="nombre" value="<?php echo $usuario->getNombreUsuario(); ?>"/></label>
+    </div>
+    <div class="col_2_formulario">
+    
+            <label for="apellidos1"> * Primer apellido: <input type="text"  name="apellido1_usuario" required="true" id="apellidouno" value="<?php echo $apellidos[0]; ?>"/></label>
+   </div>
+   <div class="col_2_formulario">
+    
+            <label for="apellido2"> Segundo apellido: <input type="text" name="apellido2_usuario" id="apellidodos" value="<?php echo $apellidos[1]; ?>"/></label>
+    </div>
+        <div class="col_2_formulario">
+    
+           <label for="email"> * Correo electrónico: <input type="email" name="email_usuario" required="true" id="email" value="<?php echo $usuario->getEmailUsuario(); ?>"/></label>
+    </div>
+    <div class="col_2_formulario">
+    
+           <label for="password"> * Contraseña: <input type="password" name="password_usuario" required="true" id="password" value="<?php echo $usuario->getPasswordUsuario(); ?>"/></label>
+    </div>
+   <div class="col_2_formulario">
+    
+   <label for="rpassword"> * Repite contraseña: <input type="password" name="rpassword" required="true" id="rpassword" value="<?php echo $usuario->getPasswordUsuario(); ?>"/></label>
+</div>
+    
+    <div class="col_2_formulario">
+    
+        <label for="dni"> * DNI: <input type="text" name="dni_usuario" required="true" id="dni" value="<?php echo $usuario->getDniUsuario(); ?>"></label>
+</div>
+    
+    <div class="col_2_formulario">
+    
+        <label for="telefono"> Nº telefono: <input type="text" name="telefono_usuario" id="telefono" value="<?php echo $usuario->getDireccionUsuario()->getTelfUsuario(); ?>"/></label>
+</div>
+    
+    <div class="col_formulario">
+        
+        <h4>Dirección</h4>
+    </div>
+    
+    <div class="col_3_formulario">
+    
+   <label for="calle"> * Calle: <input type="text" name="calle_usuario" required="true" id="calle" value="<?php echo $usuario->getDireccionUsuario()->getCalleUsuario(); ?>"/></label>
+</div>
+    
+    <div class="col_3_formulario">
+    
+   <label for="n_calle"> * Numero de portal: <input type="text" name="n_calle_usuario" required="true" id="n_calle" value="<?php echo $usuario->getDireccionUsuario()->getNCalleUsuario(); ?>"/></label>
+</div>
+    
+    <div class="col_3_formulario">
+    
+   <label for="escalera">  Escalera: <input type="text" name="escalera_usuario"  id="escalera" value="<?php echo $usuario->getDireccionUsuario()->getEscaleraUsuario(); ?>"/></label>
+</div>
+    
+    <div class="col_3_formulario">
+    
+   <label for="ciudad">  Ciudad: <input type="text" name="ciudad_usuario"  id="ciudad" value="<?php echo $usuario->getDireccionUsuario()->getCiudadUsuario(); ?>"/></label>
+</div>
+    
+    <div class="col_3_formulario">
+    
+   <label for="poblacion"> * Población: <input type="text" name="poblacion_usuario" required="true" id="poblacion" value="<?php echo $usuario->getDireccionUsuario()->getPoblacionUsuario(); ?>"/></label>
+</div>
+
+   <div class="col_3_formulario">
+    
+           <label for="pais"> * Pais: <input type="text" name="pais_usuario" id="pais" value="<?php echo $_POST["pais_usuario"]; ?>"/></label>
+    </div>
+        
+        <div class="col_formulario">
+            
+            <input class="buttom_green" type="submit" value="Darse de alta" />
+        
+       <div class="leyenda">
+       <p ><b>* los campos marcados con este símbolo son obligatorios</b></p>
+       </div>  
+        </div>
+
+    </form>
+</div>
+    
 
 </section>
-
-<?php require_once("includes/footer.php");  ?>
-          

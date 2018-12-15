@@ -14,8 +14,8 @@
 			
 			<a class="user-icono enlace_usuarios" href="#"><i class="fas fa-user"></i><spam><?php echo($usuario->getTipoUsuario()->getTipoUsuario()); ?></spam></a>
 			<div class="extendido-usuarios">
-				<a  href="?controller=Usuarios&action=modificarUsuario&id=<?php //echo($usuario->getIdUsuario()); ?>">Modificar perfil</a>
-   				<a  href="?controller=Usuarios&action=darseBaja&id=<?php //echo($usuario->getIdUsuario()); ?>">Darse de baja</a>
+				<a  href="?controller=Usuarios&action=modificarUsuario&id=<?php echo($usuario->getIdUsuario()); ?>">Modificar perfil</a>
+   				<a  href="?controller=Usuarios&action=darseBaja&id=<?php echo($usuario->getIdUsuario()); ?>">Darse de baja</a>
                                 <a  href="?controller=Usuarios&action=cerrarSesion">Cerrar sesión</a>
     			</nav>
 				
