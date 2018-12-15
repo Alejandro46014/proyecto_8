@@ -70,7 +70,7 @@ require_once 'modelos/UsuariosModelo.php';
             require_once 'vistas/plantillas/navegacion_usuarios.php';
             
         }else{
-             echo $usuario->getIdUsuario();
+             
           require_once 'vistas/plantillas/navegacion_invitados.php';
         }
         
