@@ -42,7 +42,7 @@ class ProductosModelo{
 	}
 	
 	
-	public function getCategoria(){
+	public function getCategoriaProducto(){
 		
 		return($this->categoria_producto);
 	}
@@ -76,14 +76,14 @@ class ProductosModelo{
 	}
 	
 	
-	public function SetCategoria($categoria_producto){
+	public function SetCategoriaProducto($categoria_producto){
 		
             $this->categoria_producto=$categoria_producto;
 	}
 
         /*---------------------------------GetTodo--------------------------------------*/
         public function getTodo(){
-            require_once("ImagenesModelo.php");
+           
             require_once("ConectarModelo.php");
 		
 		

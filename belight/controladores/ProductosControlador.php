@@ -51,15 +51,27 @@ class ProductosControlador{
         require_once 'vistas/administrador/nuevoProductoVista.php';
     }
     
-    public function modificarProducto(){
-        require_once("modelos/ImagenesModelo.php");
+    public function listarProductos(){
+        
         require_once 'modelos/ProductosModelo.php';
         $producto=new ProductosModelo();
         $productos=$producto->getTodo();
-        require_once 'vistas/administrador/modificarProductoVista.php';
+        require_once 'vistas/administrador/gestionarProductosVista.php';
     }
     
-    public function actualizarProducto(){
+    public function modificarProducto(){
+        
+        if (isset($_GET['id'])){
+            
+            $id=$_GET['id'];
+            $producto=new ProductosModelo();
+            $producto=$producto->getById($id);
+            
+            require_once 'vistas/administrador/modificarProductoVista.php';
+        }
+    }
+
+        public function actualizarProducto(){
         
         require_once 'modelos/CategoriasProductosModelo.php';
         require_once 'modelos/ImagenesModelo.php';

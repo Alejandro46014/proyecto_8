@@ -9,8 +9,8 @@
 		<nav class="navegacion-principal">
 			<a href="?controller=Administrador&action=listarUsuarios">Gestionar usuarios</a>
 			<a href="?controller=Productos&action=nuevoProducto">Nuevo producto</a> 
-			<a href="?controller=Productos&action=modificarProducto">Modificar productos</a> 
-			<a href="?controller=Valoraciones&action=listarValoraciones">Gestionar valoraciones</a>
+			<a href="?controller=Productos&action=listarProductos">Gestionar productos</a> 
+			
 			
 			<a class="user-icono enlace_usuarios" href="#"><i class="fas fa-user"></i><spam><?php echo($usuario->getTipoUsuario()->getTipoUsuario()); ?></spam></a>
 			<div class="extendido-usuarios">
@@ -22,5 +22,4 @@
  			 </div>
 	</div><!--.contenedor+clearfix-->
 </div><!--.barra-->
-<?php echo $usuario->getNombreUsuario();
-require_once 'controladores/ControladorFrontal.php';  ?>
+<?php require_once 'controladores/ControladorFrontal.php';  ?>

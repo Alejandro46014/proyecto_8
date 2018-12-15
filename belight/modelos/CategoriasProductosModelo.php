@@ -4,26 +4,22 @@ class CategoriasProductosModelo{
     
 
     private $id_categoria;
-    private  $genero;
+    private  $categoria;
     private $descripcion;
     
     public function __construct($id_categoria) {
         
         $this->id_categoria=$id_categoria;
         if($this->id_categoria==1){
-            $this->genero="Acción";
+            $this->categoria="Patinetes";
         }elseif($this->id_categoria==2){
-            $this->genero="Terror";
+            $this->categoria="Bicicletas";
         }elseif($this->id_categoria==3){
-            $this->genero="Románticas";
+            $this->categoria="SegWays";
         }elseif($this->id_categoria==4){
-            $this->genero="Infantiles";
+            $this->categoria="NineBots";
         }elseif($this->id_categoria==5){
-            $this->genero="Comedia";
-        }elseif($this->id_categoria==6){
-            $this->genero="Ciencia-ficción";
-        }elseif($this->id_categoria==7){
-            $this->genero="Drama";
+            $this->categoria="HoverBoards";
         }
     }
 
@@ -35,9 +31,9 @@ class CategoriasProductosModelo{
         return $this->id_categoria;
     }
     
-    public function getGenero(){
+    public function getCategoria(){
         
-        return $this->genero;
+        return $this->categoria;
     }
     
     public function getDescripcion(){
@@ -52,9 +48,9 @@ class CategoriasProductosModelo{
          $this->id_categoria=$id;
     }
     
-    public function setGenero($genero){
+    public function setCategoria($categoria){
         
-         $this->genero=$genero;
+         $this->categoria=$categoria;
     }
     
     public function setDescripcion($descripcion){
