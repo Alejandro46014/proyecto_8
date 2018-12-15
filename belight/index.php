@@ -61,9 +61,7 @@ require_once 'modelos/UsuariosModelo.php';
             
           require_once 'vistas/plantillas/navegacion_administrador.php';
           
-        }elseif(isset($_SESSION['usuario']) && ($usuario->getTipoUsuario()->getTipoUsuario()=="Usuario_novel"  
-                || $usuario->getTipoUsuario()->getTipoUsuario()=="Usuario_experto" 
-                || $usuario->getTipoUsuario()->getTipoUsuario()=="Usuario_profesional")){
+        }elseif(isset($_SESSION['usuario'])){
            // session_start();
             //$id= $_SESSION['usuario'];
             $usuario=$usuario->getById($id);
@@ -72,6 +70,7 @@ require_once 'modelos/UsuariosModelo.php';
         }else{
              
           require_once 'vistas/plantillas/navegacion_invitados.php';
+          
         }
         
         
