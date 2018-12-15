@@ -37,11 +37,15 @@
 		<th>Nombre</th>
 		<th>Apellidos</th>
 		<th>Email</th>
-		<th>Fecha nacimiento</td>
-		<th>País</th>
-		<th>Fecha alta</th>
-		<th>Activo</th>
+		<th>DNI</td>
 		<th>Tipo usuario</th>
+		<th>Ciudad</th>
+		<th>Población</th>
+		<th>Calle</th>
+                <th>Nº calle</th>
+		<th>Escalera</th>
+		<th>Código postal</th>
+		<th>Telefono</th>
 		
 		<th colspan=2 >Acciones</th>
 	</tr>
@@ -52,15 +56,19 @@
 				<td><?php echo $usuario->getNombreUsuario(); ?></td>
 				<td><?php echo $usuario->getApellidosUsuario(); ?></td>
 				<td><?php echo $usuario->getEmailUsuario();?></td>
-				<td><?php echo $usuario->getFechaNacimientoUsuario();?></td>
-				<td><?php echo $usuario->getPaisUsuario();?></td>
-				<td><?php echo $usuario->getFechaAltaUsuario();?></td>
-				<td><?php echo $usuario->getActivoUsuario();?></td>
-				<td><?php echo $usuario->getTipoUsuario()->getTipoUsuario;?></td>
+				<td><?php echo $usuario->getDniUsuario();?></td>
+				<td><?php echo $usuario->getTipoUsuario()->getTipoUsuario();?></td>
+				<td><?php echo $usuario->getDireccionUsuario()->getCiudadUsuario();?></td>
+				<td><?php echo $usuario->getDireccionUsuario()->getPoblacionUsuario();?></td>
+				<td><?php echo $usuario->getDireccionUsuario()->getCalleUsuario();?></td>
+                                <td><?php echo $usuario->getDireccionUsuario()->getNCalleUsuario();?></td>
+				<td><?php echo $usuario->getDireccionUsuario()->getEscaleraUsuario();?></td>
+				<td><?php echo $usuario->getDireccionUsuario()->getCpUsuario();?></td>
+                                <td><?php echo $usuario->getDireccionUsuario()->getTelfUsuario();?></td>
 				
 				
 				<td><a href="?controller=Usuarios&action=modificarUsuario&id=<?php echo $usuario->getIdUsuario(); ?>">Actualizar</a> </td>
-				<td><a href="?controller=Administrador&action=bloquearUsuario&id=<?php echo $usuario->getIdUsuario(); ?>">Bloquear</a> </td>
+				<td><a href="?controller=Pedidos&action=listarPedidos&id=<?php echo $usuario->getIdUsuario(); ?>">Bloquear</a> </td>
 			</tr>
 			
 	<?php } ?>

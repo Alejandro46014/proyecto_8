@@ -156,7 +156,7 @@ class UsuariosModelo {
                                         $direccion->setNCalleUsuario($fila['n_calle_usuario']);
                                         $direccion->setEscaleraUsuario($fila['escalera_usuario']);
                                         $direccion->setCpUsuario($fila['cp_usuario']);
-                                        $direccion->setTelfUsuario($fila['telefono_usuario']);
+                                        $direccion->setTelfUsuario($fila['telefono1_usuario']);
                                         
                                         $usuario->setDireccionUsuario($direccion);
 					

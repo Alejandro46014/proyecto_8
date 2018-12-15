@@ -76,14 +76,14 @@ class ProductosModelo{
 	}
 	
 	
-	public function SetCategoriaProducto($categoria_producto){
+	public function setCategoriaProducto($categoria_producto){
 		
             $this->categoria_producto=$categoria_producto;
 	}
 
         /*---------------------------------GetTodo--------------------------------------*/
         public function getTodo(){
-           
+           require_once 'CategoriasProductosModelo.php';
             require_once("ConectarModelo.php");
 		
 		
@@ -107,7 +107,8 @@ class ProductosModelo{
                  
                  $producto->id_producto=$fila['id_producto'];
                  $producto->nombre_producto=$fila['nombre_producto'];
-                 $producto->categoria_producto=new CategoriasProductosModelo($fila['categorias_id_categoria']);
+                 $categoria=new CategoriasProductosModelo($fila['categorias_id_categoria']);
+                 $producto->categoria_producto=$categoria;
                  $producto->precio_producto=$fila['precio_producto'];
                  $producto->descripcion_producto=$fila['descripcion_producto'];
                  $producto->imagen_producto=$fila['imagen_producto'];
@@ -135,7 +136,7 @@ class ProductosModelo{
 
         /*---------------------------------GetById--------------------------------------*/
 	public function getById($id){
-            
+            require_once 'CategoriasProductosModelo.php';
             require_once("ConectarModelo.php");
 		
 		
@@ -151,14 +152,15 @@ class ProductosModelo{
 			$consulta->bindParam(':id',$id,PDO::PARAM_INT);
 			
 			$consulta->execute();
-			$resultado=$consulta->fetchAll(PDO::FETCH_ASSOC);
+			$resultado=$consulta->fetch(PDO::FETCH_ASSOC);
                         if ($resultado){
                             
 			$producto=new ProductosModelo();
                  
                  $producto->id_producto=$resultado['id_producto'];
                  $producto->nombre_producto=$resultado['nombre_producto'];
-                 $producto->categoria_producto=new CategoriasProductosModelo($resultado['categorias_id_categoria']);
+                 $categoria=new CategoriasProductosModelo($resultado['categorias_id_categoria']);
+                 $producto->categoria_producto=$categoria;
                  $producto->precio_producto=$resultado['precio_producto'];
                  $producto->descripcion_producto=$resultado['descripcion_producto'];
                  $producto->imagen_producto=$resultado['imagen_producto'];
@@ -464,7 +466,7 @@ class ProductosModelo{
         
         /*---------------------------Buscar productos------------------------------*/
         
-        public function buscar($nombre,$categoria){
+        public function buscar($nombre,$categoria,$id_producto){
             
             require_once 'ConectarModelo.php';
             
@@ -473,11 +475,12 @@ class ProductosModelo{
                 $conexion= ConectarModelo::conexion();
                 $lista_productos=[];
                  $sql="SELECT * FROM productos  INNER JOIN imagenes ON id_producto=productos_id_producto WHERE"
-                        . " nombre_producto LIKE :nombre OR categorias_productos_id_categoria LIKE :categoria ";
+                        . " nombre_producto LIKE :nombre OR categorias_productos_id_categoria LIKE :categoria OR id_producto LIKE :id ORDE BY id_producto DESC";
                 $consulta=$conexion->prepare($sql);
                 
                 $consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
                 $consulta->bindParam(':categoria',$categoria,PDO::PARAM_STR);
+                $consulta->bindParam(':id',$id_producto,PDO::PARAM_INT);
                 
                 $consulta->execute();
                 $resultado=$consulta->fetchAll();
@@ -487,7 +490,7 @@ class ProductosModelo{
 				alert("No existe ningún producto con esos criterios de busqueda");
 				</script>';
                     $controller=new ProductosControlador();
-                    $controller->modificarProducto();
+                    $controller->listarProductos();
                 }else{
                     
                    

@@ -52,7 +52,7 @@ class ProductosControlador{
     }
     
     public function listarProductos(){
-        
+        require_once 'modelos/CategoriasProductosModelo.php';
         require_once 'modelos/ProductosModelo.php';
         $producto=new ProductosModelo();
         $productos=$producto->getTodo();
@@ -60,12 +60,14 @@ class ProductosControlador{
     }
     
     public function modificarProducto(){
-        
+        require_once 'modelos/CategoriasProductosModelo.php';
+       require_once 'modelos/ProductosModelo.php'; 
         if (isset($_GET['id'])){
             
             $id=$_GET['id'];
             $producto=new ProductosModelo();
             $producto=$producto->getById($id);
+            
             
             require_once 'vistas/administrador/modificarProductoVista.php';
         }
@@ -90,15 +92,15 @@ class ProductosControlador{
 				$producto->setNombreProducto($_POST['nombre_producto']);
                                 $producto->setPrecioProducto($_POST['precio_producto']);
                                 $categoria=new CategoriasProductosModelo($_POST['categoria_producto']);
-                                $producto->SetCategoria($categoria);
+                                $producto->setCategoriaProducto($categoria);
 				$producto->setDescripcionProducto($_POST['descripcion_producto']);
-				$producto->setImagenProducto($imagen);
+				$producto->setImagenProducto($_POST['imagen_producto']);
                                 
             $producto->actualizar($id);
             
             $controller=new ProductosControlador();
-            $controller->modificarProducto();
-           // header("Location:?controller=Productos&action=modificarProducto");
+            $controller->listarProductos();
+           
 
             }
         }
@@ -114,7 +116,7 @@ class ProductosControlador{
         $producto->eliminar($id);
         
         $controller=new ProductosControlador();
-        $controller->modificarProducto();
+        $controller->listarProductos();
         
         }
     }
@@ -123,12 +125,13 @@ class ProductosControlador{
                     if ((isset($_POST['buscar']))){
                      $nombre=$_POST['nombre_producto'];
                      $categoria=$_POST['categoria_producto'];
+                     $id_producto=$_POST['id_producto'];
                      
                      
                     $producto=new ProductosModelo();
-                    $productos=$producto->buscar($nombre,$categoria); 
+                    $productos=$producto->buscar($nombre,$categoria,$id_producto); 
                     
-                    require_once("vistas/administrador/modificarProductoVista.php");
+                    require_once("vistas/administrador/gestionarProductosVista.php");
                     }
     }
 }
