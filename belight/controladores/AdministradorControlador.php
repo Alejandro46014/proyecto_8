@@ -28,11 +28,12 @@ class AdministradorControlador{
                 public function buscarUsuarios(){
                     if ((isset($_POST['buscar']))){
                      $id=$_POST['id_usuario'];
-                     $tipo_usuario=$_POST['pais_usuario'];
+                     $nombre=$_POST['nombre_usuario'];
+                     $pais=$_POST['pais_usuario'];
                     
                      
                     $usuarioAd=new AdministradorModelo();
-                    $usuarios=$usuarioAd->buscarUsuarios($id,$pais); 
+                    $usuarios=$usuarioAd->buscarUsuarios($id,$pais,$nombre); 
                     
                     require_once("vistas/administrador/gestionarUsuariosVista.php");
                     }

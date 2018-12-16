@@ -1,10 +1,13 @@
 <section class="seccion">
 	<div class="formulario clearfix">
 		<form action="?controller=Productos&action=buscarProductos" method="post">
-		<div class="col_2_formulario">
-			<label for="id_usuario">Id producto:<br> <input type="number" id="id_usuario" name="id_usuario"/></label>
+		<div class="col_3_formulario">
+			<label for="id_producto">Id producto:<br> <input type="number" id="id_producto" name="id_producto"/></label>
 		</div>
-		<div class="col_2_formulario">
+                    <div class="col_3_formulario">
+                        <label for="nombre_producto">Nombre producto:<br> <input type="text" id="nombre_producto" name="nombre_producto"/></label>
+		</div>
+		<div class="col_3_formulario">
 			<label for="categoria" >Categoria:<br>
                 <select name="categoria_producto" class="categoria">
                     <option value="">--Categoria--</option>
@@ -33,7 +36,7 @@
 		<th>Nombre</th>
 		<th>Categoria</th>
 		<th>Descripción</th>
-		<th>Precio</td>
+		<th>Precio</th>
                 <th colspan="2">Imagen</th>
 		
 		<th colspan=2 >Acciones</th>
