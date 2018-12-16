@@ -67,8 +67,8 @@
                                 <td><?php echo $usuario->getDireccionUsuario()->getTelfUsuario();?></td>
 				
 				
-				<td><a href="?controller=Usuarios&action=modificarUsuario&id=<?php echo $usuario->getIdUsuario(); ?>">Actualizar</a> </td>
-				<td><a href="?controller=Pedidos&action=listarPedidos&id=<?php echo $usuario->getIdUsuario(); ?>">Bloquear</a> </td>
+				<td><a href="?controller=Usuarios&action=bajaVista&id=<?php echo $usuario->getIdUsuario(); ?>">Eliminar</a> </td>
+				<td><a href="?controller=Pedidos&action=listarPedidos&id=<?php echo $usuario->getIdUsuario(); ?>">Gestionar pedidos</a> </td>
 			</tr>
 			
 	<?php } ?>

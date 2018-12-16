@@ -108,7 +108,7 @@ class ProductosModelo{
                  $producto->id_producto=$fila['id_producto'];
                  $producto->nombre_producto=$fila['nombre_producto'];
                  $categoria=new CategoriasProductosModelo($fila['categorias_id_categoria']);
-                 $producto->categoria_producto=$categoria;
+                 $producto->setCategoriaProducto($categoria);
                  $producto->precio_producto=$fila['precio_producto'];
                  $producto->descripcion_producto=$fila['descripcion_producto'];
                  $producto->imagen_producto=$fila['imagen_producto'];
@@ -325,15 +325,17 @@ class ProductosModelo{
                         
                                 
 			$sql="UPDATE productos  SET nombre_producto=:nombre, categorias_id_categoria=:categoria, precio_producto=:precio,"
-                                . " descripcion_producto=:descripcion,imagen=:imagen WHERE id_producto=:id";
+                                . " descripcion_producto=:descripcion,imagen_producto=:imagen WHERE id_producto=:id";
 			
 			$consulta=$conexion->prepare($sql);
 			
+                        $consulta->bindParam(':id',$id,PDO::PARAM_INT);
                         $consulta->bindParam(':nombre',$nombre_producto,PDO::PARAM_STR);
                         $consulta->bindParam(':categoria',$categoria,PDO::PARAM_INT);
-                        $consulta->bindParam(':precio',$nombre_original_producto,PDO::PARAM_STR);
-			$consulta->bindParam(':descripcion',$anio_lanzamiento,PDO::PARAM_STR);
-			$consulta->bindParam(':imagen',$sinopsis,PDO::PARAM_STR);
+                        $consulta->bindParam(':precio',$precio,PDO::PARAM_STR);
+			$consulta->bindParam(':descripcion',$descripcion,PDO::PARAM_STR);
+			$consulta->bindParam(':imagen',$imagen,PDO::PARAM_STR);
+                        
                         
 			
 			$consulta->execute();

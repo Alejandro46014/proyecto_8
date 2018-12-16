@@ -76,14 +76,14 @@ class ProductosControlador{
         public function actualizarProducto(){
         
         require_once 'modelos/CategoriasProductosModelo.php';
-        require_once 'modelos/ImagenesModelo.php';
+        
         
         if(isset($_POST['modificar_producto'])){
             
             if (isset($_GET['id'])){
             
         $id=$_GET['id'];
-        $imagen= subir_archivos();
+        
         
         
             $producto=new ProductosModelo();

@@ -575,6 +575,14 @@ div.col_3_formulario select{
 	margin: 20px auto;
 }
 
+div.col_2_formulario input,
+div.col_2_formulario select{
+	
+	width: 90%;
+	display: block;
+	margin: 20px auto;
+}
+
 div.col_4_formulario input,
 div.col_4_formulario select{
 	
@@ -598,7 +606,8 @@ div.col_4_formulario select{
 }
 	
 	
-div.col_2_formulario input{
+div.col_2_formulario input,
+div.col_2_formulario select{
 	
 	width: 90%;
 	display: block;
