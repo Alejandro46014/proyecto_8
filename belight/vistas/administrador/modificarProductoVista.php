@@ -92,10 +92,13 @@
             </div>
             
             <div class="col_2_formulario">
-            <label for="precio">Precio: <input type="text" id="precio" name="precio_producto" value="<?php echo $producto->getPrecioProducto(); ?>"/></label>
+           
             </div>
             <div class="col_2_formulario">
             <label for="imagen_producto">Drectorio imagen:<input type="text" id="imagen_producto" name="imagen_producto" value="<?php echo $producto->getImagenProducto(); ?>"/></label>
+            </div>
+             <div class="col_2_formulario">
+            <label for="precio">Precio: <input type="text" id="precio" name="precio_producto" value="<?php echo $producto->getPrecioProducto(); ?>"/></label>
             </div>
             <div class="col_formulario">
             <label for="descripcion">Descripción:<textarea name="descripcion_producto" id="descripcion" cols="6" rows="10"><?php echo $producto->getDescripcionProducto(); ?></textarea></label>

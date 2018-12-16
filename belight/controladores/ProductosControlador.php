@@ -41,7 +41,7 @@ class ProductosControlador{
 				$producto->setNombreProducto($_POST['nombre_producto']);
                                 $producto->setPrecioProducto($_POST['precio_producto']);
                                 $categoria=new CategoriasProductosModelo($_POST['categoria_producto']);
-                                $producto->SetCategoria($categoria);
+                                $producto->setCategoriaProducto($categoria);
 				$producto->setDescripcionProducto($_POST['descripcion_producto']);
 				$producto->setImagenProducto($imagen);
 				

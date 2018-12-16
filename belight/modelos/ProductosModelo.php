@@ -225,7 +225,7 @@ class ProductosModelo{
                     
                     if (empty($precio)){
                             
-                         echo '<p>El campo año de lanzamiento no puede estar vacío</p>';
+                         echo '<p>El campo precio no puede estar vacío</p>';
                          
                         $mal4=TRUE;
                     }
@@ -302,6 +302,7 @@ class ProductosModelo{
 		}
 		
 		$conexion=null;
+                return $resultado;
 		
 	}
         
@@ -472,12 +473,12 @@ class ProductosModelo{
             
             require_once 'ConectarModelo.php';
             
-           $nombre="%".$nombre."%";
+           //$nombre="%".$nombre."%";
             try{
                 $conexion= ConectarModelo::conexion();
                 $lista_productos=[];
-                 $sql="SELECT * FROM productos  INNER JOIN imagenes ON id_producto=productos_id_producto WHERE"
-                        . " nombre_producto LIKE :nombre OR categorias_productos_id_categoria LIKE :categoria OR id_producto LIKE :id ORDE BY id_producto DESC";
+                 $sql="SELECT * FROM productos  WHERE"
+                        . " nombre_producto LIKE :nombre OR categorias_id_categoria LIKE :categoria OR id_producto LIKE :id ORDER BY id_producto DESC";
                 $consulta=$conexion->prepare($sql);
                 
                 $consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
