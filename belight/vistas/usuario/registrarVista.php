@@ -1,6 +1,6 @@
 
 <section class="seccion">
-    <div id="box">
+    
 <div class="formulario clearfix">
     <div class="cabecera_formularios">
         <h3>Formulario de alta en la web</h3>
@@ -24,7 +24,8 @@
     </div>
     <div class="col_2_formulario">
     
-           <label for="password"> * Contraseña: <input type="password" name="password_usuario" required="true" id="password" value="<?php echo $_POST["password_usuario"]; ?>"/></label>
+        <label for="password"> * Contraseña: <input type="password" name="password_usuario" required="true" id="password" placeholder="ej: Masdem22" value="<?php echo $_POST["password_usuario"]; ?>" title="La contraseña debe contener mayúsculas minúsculas, numeros y tener una longitud de 8 caracteres"/></label>
+           
     </div>
    <div class="col_2_formulario">
     
@@ -38,7 +39,7 @@
     
     <div class="col_2_formulario">
     
-        <label for="telefono"> Nº telefono: <input type="text" name="telefono_usuario" id="telefono" value="<?php echo $_POST["telefono_usuario"]; ?>"/></label>
+        <label for="telefono"> Nº telefono: <input type="tel" name="telefono_usuario" id="telefono" value="<?php echo $_POST["telefono_usuario"]; ?>"/></label>
 </div>
     
     <div class="col_formulario">
@@ -81,12 +82,12 @@
             <input class="buttom_green" type="submit" value="Darse de alta" />
         
        <div class="leyenda">
-       <p ><b>* los campos marcados con este símbolo son obligatorios</b></p>
+           <spam>* los campos marcados con este símbolo son obligatorios</spam>
        </div>  
         </div>
 
     </form>
 </div>
-    </div>
+   
 
 </section>

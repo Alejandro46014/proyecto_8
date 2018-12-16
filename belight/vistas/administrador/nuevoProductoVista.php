@@ -30,7 +30,7 @@
 			
 		</div>
 		<div class="col_2_formulario">
-			 <label for="directorio_imagen">Directorio imagen:<input type="text" id="directorio_imagen" name="directorio_imagen"/></label>
+                    <label for="directorio_imagen">Directorio imagen:<input type="text" id="directorio_imagen" name="directorio_imagen" disabled="true" placeholder="Carga automática"/></label>
 		</div>
                 <div class="col_2_formulario">
 			 <label for="precio">Precio producto:<input type="text" id="precio" name="precio_producto"/></label>

@@ -53,7 +53,7 @@
 				
 				
 				<td><a href="?controller=Productos&action=modificarProducto&id=<?php echo $producto->getIdProducto(); ?>">Actualizar</a> </td>
-				<td><a href="?controller=Administrador&action=eliminarProducto&id=<?php echo $producto->getIdProducto(); ?>">Eliminar</a> </td>
+				<td><a href="?controller=Productos&action=eliminarProducto&id=<?php echo $producto->getIdProducto(); ?>">Eliminar</a> </td>
 			</tr>
 			
 	<?php } ?>

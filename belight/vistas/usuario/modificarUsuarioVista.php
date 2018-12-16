@@ -24,11 +24,12 @@
     </div>
     <div class="col_2_formulario">
     
-           <label for="password"> * Contraseña: <input type="password" name="password_usuario" required="true" id="password" value="<?php echo $usuario->getPasswordUsuario(); ?>"/></label>
+           <label for="password"> * Contraseña: <input type="password" name="password_usuario" required="true" id="password" value="<?php echo $usuario->getPasswordUsuario(); ?>" title="La contraseña debe contener mayúsculas minúsculas, numeros y tener una longitud de 8 caracteres"/></label>
+           
     </div>
    <div class="col_2_formulario">
     
-   <label for="rpassword"> * Repite contraseña: <input type="password" name="rpassword" required="true" id="rpassword" value="<?php echo $usuario->getPasswordUsuario(); ?>"/></label>
+       <label for="rpassword"> * Repite contraseña: <input type="password" name="rpassword" required="true" id="rpassword" placeholder="ej: Masdem22" value="<?php echo $usuario->getPasswordUsuario(); ?>"/></label>
 </div>
     
     <div class="col_2_formulario">
@@ -38,7 +39,7 @@
     
     <div class="col_2_formulario">
     
-        <label for="telefono"> Nº telefono: <input type="text" name="telefono_usuario" id="telefono" value="<?php echo $usuario->getDireccionUsuario()->getTelfUsuario(); ?>"/></label>
+        <label for="telefono"> Nº telefono: <input type="tel" name="telefono_usuario" id="telefono" value="<?php echo $usuario->getDireccionUsuario()->getTelfUsuario(); ?>"/></label>
 </div>
     
     <div class="col_formulario">
@@ -86,7 +87,7 @@
             <input class="buttom_green" type="submit" value="Darse de alta" />
         
        <div class="leyenda">
-       <p ><b>* los campos marcados con este símbolo son obligatorios</b></p>
+           <spam>* Los campos marcados con este símbolo son obligatorios</spam>
        </div>  
         </div>
 
