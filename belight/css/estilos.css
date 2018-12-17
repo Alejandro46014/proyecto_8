@@ -740,6 +740,42 @@ tr:hover{
 		width: 100%;
 	}
 }
+
+/*----------------------RESUMEN CARRITO--------------------*/
+
+div.resumen h4{
+    
+    text-align: center;
+}
+div.usuario h4{
+    text-align: left;
+}
+div.datos_pedido {
+    text-align: center;
+}
+@media only screen and (min-width:768px){
+    
+div.resumen{
+    width: 50%;
+    background-color: #FDF8F8;
+    margin: 0 auto;
+}
+
+div.imagen {
+    width: 50%;
+    margin: 0 auto;
+    }
+    div.imagen img{
+    width: 100%;
+    
+    }
+    
+    div.usuario{
+        
+        width: 50%;
+        float: left;
+    }
+}
 /*--------footer-----*/
 
 footer.site-footer{
