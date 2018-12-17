@@ -94,7 +94,7 @@ class PedidosControlador{
         }
     }
     
-    public function ConfirmarEliminarPedido(){
+    public function confirmarEliminarPedido(){
         
         if (isset($_GET['id'])){
             
@@ -102,7 +102,7 @@ class PedidosControlador{
             $pedido=new PedidosModelo();
             $pedido=$pedido->getById($id_pedido);
             
-            require_once 'vistas/usuario/ConfirmarEliminarProductoVista.php';
+            require_once 'vistas/usuario/ConfirmarEliminarPedidoVista.php';
         }
              
     }

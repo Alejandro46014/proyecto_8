@@ -87,7 +87,7 @@ class PedidosModelo{
                         
                  $pedido=new PedidosModelo();
                  
-                 $pedido->id_pedido=$fila['productos_id_producto'];
+                 $pedido->id_pedido=$fila['id_pedido'];
                  $pedido->id_producto=$fila['productos_id_producto'];
                  $pedido->id_usuario=$fila['usuarios_id_usuario'];
                  $pedido->numero_pedido=$fila['numero_pedido'];
@@ -142,7 +142,7 @@ class PedidosModelo{
                         
                  $pedido=new PedidosModelo();
                  
-                 $pedido->id_pedido=$fila['productos_id_producto'];
+                 $pedido->id_pedido=$fila['id_pedido'];
                  $pedido->id_producto=$fila['productos_id_producto'];
                  $pedido->id_usuario=$fila['usuarios_id_usuario'];
                  $pedido->numero_pedido=$fila['numero_pedido'];
@@ -193,7 +193,7 @@ class PedidosModelo{
                             
 			$pedido=new PedidosModelo();
                  
-                 $pedido->id_pedido=$resultado['id_producto'];
+                 $pedido->id_pedido=$resultado['id_pedido'];
                  $pedido->id_producto=$resultado['productos_id_producto'];
                  $pedido->id_usuario=$resultado['usuarios_id_usuario'];
                  $pedido->numero_pedido=$resultado['numero_pedido'];

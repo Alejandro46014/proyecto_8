@@ -32,7 +32,7 @@
                                 <td><?php echo $pedido->getTotalPedido()."€";?></td>
 		
 				
-				<td><a href="?controller=Pedidos&action=ConfirmarEliminarPedido&id=<?php echo $pedido->getNumeroPedido(); ?>">Eliminar</a> </td>
+				<td><a href="?controller=Pedidos&action=confirmarEliminarPedido&id=<?php echo $pedido->getIdPedido(); ?>">Eliminar</a> </td>
 				
 			</tr>
 			

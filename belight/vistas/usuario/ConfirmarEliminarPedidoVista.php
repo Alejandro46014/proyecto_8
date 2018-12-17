@@ -1,12 +1,10 @@
-
-
 <!--CONTENIDO-->
 <section class="seccion">
 
 	<div class="formulario_small clearfix">
 	<div class="cabecera_formularios">
-		<h3>¿Realmente desea darse de baja??</h3>
-		<form action="?controller=Usuarios&action=darseBajaUsuario&id=<?php echo $usuario->getIdUsuario(); ?>" method="post">
+		<h3>¿Realmente desea eliminar este pedido??</h3>
+		<form action="?controller=Pedidos&action=eliminarPedido&id=<?php echo $pedido->getIdPedido(); ?>" method="post">
 		<div class="col_formulario">
 			<input type="submit" name="aceptar" class="buttom_green" value="Aceptar"/>
 			</div>
@@ -17,6 +15,4 @@
 		</div>
 	</div>
 </section>
-
-
 
