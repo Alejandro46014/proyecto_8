@@ -10,6 +10,38 @@ require_once 'modelos/UsuariosModelo.php';
                 $id=$_SESSION['usuario'];
                 $usuarioAc= new UsuariosModelo();
                 $usuario=$usuarioAc->getById($id);
+                
+               
+	$archivo = "contador.txt"; // Archivo con el numero de visitas
+// Lee las visitas.
+if(file_exists($archivo)){
+$contador = file_get_contents($archivo);
+$visitado =$_COOKIE['visitado']; // Intenta leer la cookie
+	if (!$visitado){
+	$contador=$contador + 1;
+	setcookie("visitado",1, time() + 7200);	
+	 }else{
+		$contador=$contador;
+	} 
+	//si NO existe la cookie, incrementa las visitas
+}else{
+// Crea archivo contador será con la 1ª visita
+touch($archivo);
+chmod($archivo, 0755);
+$contador = 1; // Valor por defecto si no existe fichero de visitas
+
+// Graba cookie de 3 horas de duracion
+setcookie("visitado",1, time() + 7200);
+}
+// guardo el contador
+file_put_contents($archivo, $contador); 
+
+	//session_start();
+	
+	$_SESSION['num_pedido']=$contador;
+	
+
+	
                 }
 
 

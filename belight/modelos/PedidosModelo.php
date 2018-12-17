@@ -181,7 +181,7 @@ class PedidosModelo{
                         $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
                         $consulta->bindParam(':numero_pedido',$precio,PDO::PARAM_INT);
 			$consulta->bindParam(':cantidad',$cantidad,PDO::PARAM_INT);
-			$consulta->bindParam(':total',$imagen,PDO::PARAM_INT);
+			$consulta->bindParam(':total',$total,PDO::PARAM_INT);
 			
 			
 			$resultado=$consulta->execute();
