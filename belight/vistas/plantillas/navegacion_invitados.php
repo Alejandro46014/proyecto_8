@@ -11,8 +11,7 @@
 			<a href="?controller=Productos&action=index&id=2">Bicicletas</a> 
 			<a href="?controller=Productos&action=index&id=3">SegWays</a> 
                         <a href="?controller=Productos&action=index&id=4">NineBots</a> 
-			<a href="?controller=Productos&action=index&id=5">Monociclos</a>
-			<a href="?controller=Productos&action=index&id=6">HoverBoards</a> 
+			<a href="?controller=Productos&action=index&id=5">HoverBoards</a> 
                         <a class="iniciar_sesion" href="?controller=Usuarios&action=login">Iniciar sesión</a>
                         <a href="?controller=Usuarios&action=registrar">Registrarse</a>
                 </nav>

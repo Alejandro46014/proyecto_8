@@ -49,8 +49,8 @@
                 <div class="pedido">
                     <ul>
                         <li>Cantidad: <?php echo $pedido->getCantidadProducto(); ?></li>
-                        <li>Precio: <?php echo $producto->getPrecioProducto(); ?></li>
-                        <li>Total: <?php echo $pedido->getTotalPedido(); ?></li>
+                        <li>Precio: <?php echo $producto->getPrecioProducto()."€"; ?></li>
+                        <li>Total: <?php echo $pedido->getTotalPedido()."€"; ?></li>
                     </ul>
                 </div>
             </div>

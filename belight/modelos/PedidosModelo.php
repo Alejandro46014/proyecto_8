@@ -61,7 +61,7 @@ class PedidosModelo{
     }
     
      /*---------------------------------GetTodo--------------------------------------*/
-        public function getTodo(){
+     public function getTodo(){
             
             require_once("ConectarModelo.php");
 		
@@ -74,6 +74,9 @@ class PedidosModelo{
             
             $sql="SELECT * FROM pedidos  ORDER BY id_pedido DESC";
             $consulta=$conexion->prepare($sql);
+            
+           
+            
             $consulta->execute();
             $resultado=$consulta->fetchAll();
             
@@ -84,7 +87,62 @@ class PedidosModelo{
                         
                  $pedido=new PedidosModelo();
                  
-                 $pedido->id_pedido=$fila['id_producto'];
+                 $pedido->id_pedido=$fila['productos_id_producto'];
+                 $pedido->id_producto=$fila['productos_id_producto'];
+                 $pedido->id_usuario=$fila['usuarios_id_usuario'];
+                 $pedido->numero_pedido=$fila['numero_pedido'];
+                 $pedido->cantidad_producto=$fila['cantidad_producto'];
+                 $pedido->total_pedido=$fila['total_pedido'];
+                 
+                 $lista_pedidos[]=$pedido;
+                 
+                }
+                   
+          }  
+			$consulta->closeCursor();
+			
+			
+			
+		}catch(PDOException $e){
+			
+			die("No se pudo conectar con la BBDD ".$e->getMessage());
+			echo("Linea de error ".$e->getLine());
+		}
+		
+		$conexion=null;
+		
+		return($lista_pedidos);
+        }
+
+    
+    /*------------------------------GetTodoUsuario---------------------------------*/
+        public function getTodoUsuario($id_usuario){
+            
+            require_once("ConectarModelo.php");
+		
+		
+		try{
+                        
+		$lista_pedidos=[];
+		$conexion=ConectarModelo::conexion();
+			
+            
+            $sql="SELECT * FROM pedidos WHERE usuarios_id_usuario=:id_usuario ORDER BY id_pedido DESC";
+            $consulta=$conexion->prepare($sql);
+            
+            $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
+            
+            $consulta->execute();
+            $resultado=$consulta->fetchAll();
+            
+          
+          if($resultado){
+               
+             foreach ($resultado as $fila){
+                        
+                 $pedido=new PedidosModelo();
+                 
+                 $pedido->id_pedido=$fila['productos_id_producto'];
                  $pedido->id_producto=$fila['productos_id_producto'];
                  $pedido->id_usuario=$fila['usuarios_id_usuario'];
                  $pedido->numero_pedido=$fila['numero_pedido'];
@@ -163,6 +221,7 @@ class PedidosModelo{
     public function guardar(){
         
         require_once 'ConectarModelo.php';
+        $conexion= ConectarModelo::conexion();
         
         $id_producto= $this->id_producto;
         $id_usuario= $this->id_usuario;
@@ -179,7 +238,7 @@ class PedidosModelo{
 			
 			$consulta->bindParam(':id_producto',$id_producto,PDO::PARAM_INT);
                         $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':numero_pedido',$precio,PDO::PARAM_INT);
+                        $consulta->bindParam(':numero_pedido',$numero_pedido,PDO::PARAM_INT);
 			$consulta->bindParam(':cantidad',$cantidad,PDO::PARAM_INT);
 			$consulta->bindParam(':total',$total,PDO::PARAM_INT);
 			
@@ -193,14 +252,14 @@ class PedidosModelo{
 				
 				
 				echo '<script type="text/javascript">
-				alert("El producto se creó correctamente");
+				alert("El pedido se creó correctamente");
 				</script>';
 				
 				
 			}else{
 				
 				echo '<script type="text/javascript">
-				alert("El producto no se pudo guardar");
+				alert("El pedido no se pudo guardar");
 				</script>';
 			}
                         
@@ -222,19 +281,19 @@ class PedidosModelo{
 
     /*----------------------ELIMINAR-----------------------*/
     
-    public function eliminar($numero_pedido,$id_usuario){
+    public function eliminar($numero_pedido){
 		
 		require_once("ConectarModelo.php");
 		
 		
 		try{
 			$conexion=ConectarModelo::conexion();
-			$sql="DELETE FROM pedidos WHERE  numero_pedido=:numero_pedido AND usuarios_id_usuario=:id_usuario";
+			$sql="DELETE FROM pedidos WHERE  numero_pedido=numero_pedido";
 			
 			$consulta=$conexion->prepare($sql);
 			
 			$consulta->bindParam(':numero_pedido',$numero_pedido,PDO::PARAM_INT);
-                        $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
+                        
 			
 			$resultado=$consulta->execute();
 			
