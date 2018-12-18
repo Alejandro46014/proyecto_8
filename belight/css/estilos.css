@@ -768,6 +768,11 @@ div.resumen{
     margin: 0 auto;
 }
 
+div.datos_usuario{
+    width: 80%;
+    margin: 0 auto;
+}
+
 div.imagen {
     width: 50%;
     margin: 0 auto;
@@ -781,6 +786,7 @@ div.imagen {
         
         width: 50%;
         float: left;
+        
     }
 }
 /*--------footer-----*/

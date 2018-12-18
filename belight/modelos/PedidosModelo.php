@@ -188,7 +188,7 @@ class PedidosModelo{
 			$consulta->bindParam(':id',$id,PDO::PARAM_INT);
 			
 			$consulta->execute();
-			$resultado=$consulta->fetchAll(PDO::FETCH_ASSOC);
+			$resultado=$consulta->fetch(PDO::FETCH_ASSOC);
                         if ($resultado){
                             
 			$pedido=new PedidosModelo();
@@ -281,18 +281,18 @@ class PedidosModelo{
 
     /*----------------------ELIMINAR-----------------------*/
     
-    public function eliminar($numero_pedido){
+    public function eliminar($id_pedido){
 		
 		require_once("ConectarModelo.php");
 		
 		
 		try{
 			$conexion=ConectarModelo::conexion();
-			$sql="DELETE FROM pedidos WHERE  numero_pedido=numero_pedido";
+			$sql="DELETE FROM pedidos WHERE  id_pedido=:id";
 			
 			$consulta=$conexion->prepare($sql);
 			
-			$consulta->bindParam(':numero_pedido',$numero_pedido,PDO::PARAM_INT);
+			$consulta->bindParam(':id',$id_pedido,PDO::PARAM_INT);
                         
 			
 			$resultado=$consulta->execute();

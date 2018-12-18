@@ -44,12 +44,13 @@ class PedidosControlador{
         require_once("modelos/ProductosModelo.php");
         require_once("ProductosControlador.php");
        
+        $id_producto=$_POST['id_producto'];
+           $producto=new ProductosModelo();
+           $producto=$producto->getById($id_producto);
         
         if (isset($_POST['confirmar_carrito'])){
             
-           $id_producto=$_POST['id_producto'];
-           $producto=new ProductosModelo();
-           $producto=$producto->getById($id_producto);
+           
            $id_usuario=$_POST['id_usuario'];
            $cantidad=$_POST['cantidad_producto'];
            $numero_pedido=$_POST['numero_pedido'];
@@ -84,6 +85,7 @@ class PedidosControlador{
     
     public function listarPedidos(){
         require_once 'modelos/ProductosModelo.php';
+        
         if (isset($_GET['id'])){
             
             $id_usuario=$_GET['id'];
@@ -102,6 +104,7 @@ class PedidosControlador{
             $pedido=new PedidosModelo();
             $pedido=$pedido->getById($id_pedido);
             
+            
             require_once 'vistas/usuario/ConfirmarEliminarPedidoVista.php';
         }
              
@@ -109,15 +112,25 @@ class PedidosControlador{
 
         public function eliminarPedido(){
         
-            if (isset($_GET['id'])){
+            require_once 'ProductosControlador.php';
+            
+            if (isset($_POST['aceptar'])){
                 
-                $numero_pedido=$_GET['id'];
+                $id_pedido=$_GET['id'];
                 $pedido=new PedidosModelo();
-                $pedido->eliminar($numero_pedido);
                 
-                $controller=new PedidosControlador();
-                $controller->listarPedidos();
-            }
+                $pedido->eliminar($id_pedido);
+                
+                $_GET['id']=1;
+                $controller=new ProductosControlador();
+                $controller->index();
+                
+            }elseif (isset ($_POST['cancelar'])) {
+                
+                $_GET['id']=1;
+                $controller=new ProductosControlador();
+                $controller->index();
+        }
              
     }
 

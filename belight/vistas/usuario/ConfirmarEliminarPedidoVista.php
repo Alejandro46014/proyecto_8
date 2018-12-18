@@ -4,7 +4,8 @@
 	<div class="formulario_small clearfix">
 	<div class="cabecera_formularios">
 		<h3>¿Realmente desea eliminar este pedido??</h3>
-		<form action="?controller=Pedidos&action=eliminarPedido&id=<?php echo $pedido->getIdPedido(); ?>" method="post">
+		<form action="?controller=Pedidos&action=eliminarPedido&id=<?php echo $pedido->getIdPedido();  ?>" method="post">
+                    <input type="hidden" name="id_usuario"  value="<?php echo $pedido->getIdUsuario(); ?>"/>
 		<div class="col_formulario">
 			<input type="submit" name="aceptar" class="buttom_green" value="Aceptar"/>
 			</div>
@@ -14,5 +15,6 @@
 		</form>
 		</div>
 	</div>
+    
 </section>
 
