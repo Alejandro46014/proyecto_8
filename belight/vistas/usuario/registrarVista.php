@@ -12,11 +12,11 @@
     </div>
     <div class="col_2_formulario">
     
-            <label for="apellidos1"> * Primer apellido: <input type="text"  name="apellido1_usuario" required="true" id="apellidouno" value="<?php echo $_POST["apellido1"]; ?>"/></label>
+            <label for="apellidos1"> * Primer apellido: <input type="text"  name="apellido1_usuario" required="true" id="apellidouno" value="<?php echo $_POST["apellido1_usuario"]; ?>"/></label>
    </div>
    <div class="col_2_formulario">
     
-            <label for="apellido2"> Segundo apellido: <input type="text" name="apellido2_usuario" id="apellidodos" value="<?php echo $_POST["apellido2"]; ?>"/></label>
+            <label for="apellido2"> Segundo apellido: <input type="text" name="apellido2_usuario" id="apellidodos" value="<?php echo $_POST["apellido2_usuario"]; ?>"/></label>
     </div>
         <div class="col_2_formulario">
     
@@ -60,6 +60,10 @@
     <div class="col_3_formulario">
     
    <label for="escalera">  Escalera: <input type="text" name="escalera_usuario"  id="escalera"></label>
+</div>
+    <div class="col_3_formulario">
+    
+   <label for="cp">  Código postal: <input type="text" name="cp_usuario"  id="cp"></label>
 </div>
     
     <div class="col_3_formulario">
