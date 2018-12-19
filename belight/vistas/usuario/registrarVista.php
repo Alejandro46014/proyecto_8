@@ -29,12 +29,12 @@
     </div>
    <div class="col_2_formulario">
     
-   <label for="rpassword"> * Repite contraseña: <input type="password" name="rpassword" required="true" id="rpassword"></label>
+   <label for="rpassword"> * Repite contraseña: <input type="password" name="rpassword" required="true" id="rpassword"/></label>
 </div>
     
     <div class="col_2_formulario">
     
-        <label for="dni"> * DNI: <input type="text" name="dni_usuario" required="true" id="dni" value="<?php echo $_POST["dni_usuario"]; ?>"></label>
+        <label for="dni"> * DNI: <input type="text" name="dni_usuario" required="true" id="dni" value="<?php echo $_POST["dni_usuario"]; ?>"/></label>
 </div>
     
     <div class="col_2_formulario">
@@ -47,33 +47,33 @@
         <h4>Dirección</h4>
     </div>
     
-    <div class="col_3_formulario">
+    <div class="col_4_formulario">
     
-   <label for="calle"> * Calle: <input type="text" name="calle_usuario" required="true" id="calle"></label>
+   <label for="calle"> * Calle: <input type="text" name="calle_usuario" required="true" id="calle" value="<?php echo $_POST["calle_usuario"]; ?>"/></label>
+</div>
+    
+    <div class="col_4_formulario">
+    
+   <label for="n_calle"> * Numero de portal: <input type="text" name="n_calle_usuario" required="true" id="n_calle" value="<?php echo $_POST["n_calle_usuario"]; ?>"/></label>
+</div>
+    
+    <div class="col_4_formulario">
+    
+   <label for="escalera">  Escalera: <input type="text" name="escalera_usuario"  id="escalera" value="<?php echo $_POST["escalera_usuario"]; ?>"/></label>
+</div>
+    <div class="col_4_formulario">
+    
+   <label for="cp">  Código postal: <input type="text" name="cp_usuario"  id="cp" value="<?php echo $_POST["cp_usuario"]; ?>"></label>
 </div>
     
     <div class="col_3_formulario">
     
-   <label for="n_calle"> * Numero de portal: <input type="text" name="n_calle_usuario" required="true" id="n_calle"></label>
+   <label for="ciudad">  Ciudad: <input type="text" name="ciudad_usuario"  id="ciudad" value="<?php echo $_POST["ciudad_usuario"]; ?>"/></label>
 </div>
     
     <div class="col_3_formulario">
     
-   <label for="escalera">  Escalera: <input type="text" name="escalera_usuario"  id="escalera"></label>
-</div>
-    <div class="col_3_formulario">
-    
-   <label for="cp">  Código postal: <input type="text" name="cp_usuario"  id="cp"></label>
-</div>
-    
-    <div class="col_3_formulario">
-    
-   <label for="ciudad">  Ciudad: <input type="text" name="ciudad_usuario"  id="ciudad"></label>
-</div>
-    
-    <div class="col_3_formulario">
-    
-   <label for="poblacion"> * Población: <input type="text" name="poblacion_usuario" required="true" id="poblacion"></label>
+   <label for="poblacion"> * Población: <input type="text" name="poblacion_usuario" required="true" id="poblacion" value="<?php echo $_POST["poblacion_usuario"]; ?>"/></label>
 </div>
 
    <div class="col_3_formulario">
