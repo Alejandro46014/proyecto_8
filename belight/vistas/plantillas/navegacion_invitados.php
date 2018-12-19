@@ -1,5 +1,5 @@
 <div class="barra">
-		<div class="barra_contenedor clearfix">
+		<div class="contenedor clearfix">
 	
 		<div class="menu-movil">
 			<span></span>
