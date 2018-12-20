@@ -31,6 +31,8 @@ class PedidosControlador{
            $pedido->setNumeroPedido($numero_pedido);
            $pedido->setTotalPedido($total_pedido);
            $pedido->setCantidadProducto($cantidad);
+           $fecha=new DateTime();
+           $pedido->setFechaPedido($fecha);
            
            require_once 'vistas/usuario/carritoPedidoVista.php'; 
         }
@@ -63,7 +65,8 @@ class PedidosControlador{
            $pedido->setNumeroPedido($numero_pedido);
            $pedido->setCantidadProducto($cantidad);
            $pedido->setTotalPedido($total);
-           
+           $fecha_pedido=new DateTime();
+           $pedido->setFechaPedido($fecha_pedido);
            $resultado=$pedido->guardar();
            
            
@@ -96,6 +99,30 @@ class PedidosControlador{
         }
     }
     
+    public function listarPedidosAdmin(){
+        require_once 'modelos/ProductosModelo.php';
+        $pedido=new PedidosModelo();
+        $pedidos=$pedido->getTodo();
+        
+        require_once 'vistas/administrador/gestionarPedidosVista.php';
+        
+    }
+    
+    public function buscarPedidos(){
+        
+        if(isset($_POST['buscar'])){
+            
+            $id_pedido=$_POST['id_pedido'];
+            $id_usuario=$_POST['id_usuario'];
+            $numero_pedido=$_POST['numero_pedido'];
+            
+            $pedido=new PedidosModelo();
+            $pedido->buscar($id_pedido, $id_usuario, $numero_pedido);
+            
+            require_once 'vistas/administrador/gestionarPedidosVista.php';
+        }
+    }
+
     public function confirmarEliminarPedido(){
         
         if (isset($_GET['id'])){
@@ -121,18 +148,41 @@ class PedidosControlador{
                 
                 $pedido->eliminar($id_pedido);
                 
-                $_GET['id']=1;
-                $controller=new ProductosControlador();
-                $controller->index();
+                $_GET['id']=$_POST['id_usuario'];
+                $controller=new PedidosControlador();
+                $controller->listarPedidos();
                 
             }elseif (isset ($_POST['cancelar'])) {
                 
-                $_GET['id']=1;
-                $controller=new ProductosControlador();
-                $controller->index();
+                $_GET['id']=$_POST['id_usuario'];
+                $controller=new PedidosControlador();
+                $controller->listarPedidos();
         }
              
     }
 
+     public function eliminarPedidoAdmin(){
+        
+            require_once 'ProductosControlador.php';
+            
+            if (isset($_POST['aceptar'])){
+                
+                $id_pedido=$_GET['id'];
+                $pedido=new PedidosModelo();
+                
+                $pedido->eliminar($id_pedido);
+                
+                
+                $controller=new PedidosControlador();
+                $controller->listarPedidosAdmin();
+                
+            }elseif (isset ($_POST['cancelar'])) {
+                
+            
+                $controller=new PedidosControlador();
+                $controller->listarPedidosAdmin();
+        }
+             
+    }
 }
 

@@ -1,5 +1,22 @@
 <section class="seccion">
 
+    <div class="formulario clearfix">
+		<form action="?controller=Pedidos&action=buscarPedidos" method="post">
+		<div class="col_3_formulario">
+			<label for="id_pedido">Id pedido:<br> <input type="number" id="id_pedido" name="id_pedido"/></label>
+		</div>
+                    <div class="col_3_formulario">
+                        <label for="id_usuario">Id usuario:<br> <input type="number" id="id_usuario" name="id_usuario"/></label>
+		</div>
+		<div class="col_3_formulario">
+                    <label for="numero_pedido">Numero de pedido:<br> <input type="number" id="numero_pedido" name="numero_pedido"/></label>
+		</div>
+		
+			<div class="col_formulario">
+				<input type="submit" name="buscar" value="Buscar" class="buttom_green"/>
+			</div>
+		</form>
+	</div>
     <div class="lista_usuarios">
 	<div class="tabla">
 		
@@ -27,7 +44,6 @@
 			<tr>
 				<td><?php echo $pedido->getIdPedido(); ?></td>
 				<td><?php echo $pedido->getNumeroPedido(); ?></td>
-                                <?php setlocale(LC_ALL,"es_ES"); ?>
                                 <td><?php echo $pedido->getFechaPedido()->format('Y-m-d H:i:s '); ?></td>
                                 <td><?php echo $producto->getNombreProducto(); ?></td>
 				<td><?php echo $producto->getPrecioProducto()."€";?></td>

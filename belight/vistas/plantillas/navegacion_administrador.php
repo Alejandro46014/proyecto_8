@@ -1,5 +1,5 @@
 <div class="barra">
-	  <div class="contenedor clearfix">
+	  <div class="barra_contenedor clearfix">
 	
 		<div class="menu-movil">
 			<span></span>
@@ -9,7 +9,8 @@
 		<nav class="navegacion-principal">
 			<a href="?controller=Administrador&action=listarUsuarios">Gestionar usuarios</a>
 			<a href="?controller=Productos&action=nuevoProducto">Nuevo producto</a> 
-			<a href="?controller=Productos&action=listarProductos">Gestionar productos</a> 
+			<a href="?controller=Productos&action=listarProductos">Gestionar productos</a>
+                        <a href="?controller=Pedidos&action=listarPedidosAdmin">Gestionar pedidos</a>
 			
 			
 			<a class="user-icono enlace_usuarios" href="#"><i class="fas fa-user"></i><spam><?php echo($usuario->getTipoUsuario()->getTipoUsuario()); ?></spam></a>

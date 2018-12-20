@@ -48,6 +48,7 @@
                 <h4>Numero de pedido: <?php echo $pedido->getNumeroPedido(); ?></h4>
                 <div class="pedido">
                     <ul>
+                        <li>Fecha: <?php echo $pedido->getFechaPedido()->format('Y-m-d H:i:s'); ?></li>
                         <li>Cantidad: <?php echo $pedido->getCantidadProducto(); ?></li>
                         <li>Precio: <?php echo $producto->getPrecioProducto()."€"; ?></li>
                         <li>Total: <?php echo $pedido->getTotalPedido()."€"; ?></li>

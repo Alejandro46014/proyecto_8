@@ -2,10 +2,11 @@
 
 class PedidosModelo{
     
-    private $id_pedido,$numero_pedido,$id_usuario,$id_producto,$cantidad_producto,$total_pedido;
+    private $id_pedido,$numero_pedido,$id_usuario,$id_producto,$cantidad_producto,$total_pedido,$fecha_pedido;
     
     public function __construct() {
         
+       
     }
 
     /*--------------------GETTERS----------------------*/
@@ -29,10 +30,14 @@ class PedidosModelo{
     public function getCantidadProducto() {
         return $this->cantidad_producto;
     }
-
     public function getTotalPedido() {
         return $this->total_pedido;
     }
+
+    public function getFechaPedido() {
+        return $this->fecha_pedido;
+    }
+    
 
     /*--------------------SETTERS---------------------*/
     
@@ -60,7 +65,13 @@ class PedidosModelo{
         $this->total_pedido = $total_pedido;
     }
     
-     /*---------------------------------GetTodo--------------------------------------*/
+    public function setFechaPedido($fecha_pedido){
+        
+        $this->fecha_pedido=$fecha_pedido;
+    }
+
+
+    /*---------------------------------GetTodo--------------------------------------*/
      public function getTodo(){
             
             require_once("ConectarModelo.php");
@@ -93,6 +104,7 @@ class PedidosModelo{
                  $pedido->numero_pedido=$fila['numero_pedido'];
                  $pedido->cantidad_producto=$fila['cantidad_producto'];
                  $pedido->total_pedido=$fila['total_pedido'];
+                 $pedido->fecha_pedido=new DateTime($fila['fecha_pedido']);
                  
                  $lista_pedidos[]=$pedido;
                  
@@ -148,6 +160,7 @@ class PedidosModelo{
                  $pedido->numero_pedido=$fila['numero_pedido'];
                  $pedido->cantidad_producto=$fila['cantidad_producto'];
                  $pedido->total_pedido=$fila['total_pedido'];
+                 $pedido->fecha_pedido=new DateTime($fila['fecha_pedido']);
                  
                  $lista_pedidos[]=$pedido;
                  
@@ -199,6 +212,7 @@ class PedidosModelo{
                  $pedido->numero_pedido=$resultado['numero_pedido'];
                  $pedido->cantidad_producto=$resultado['cantidad_producto'];
                  $pedido->total_pedido=$resultado['total_pedido'];
+                 $pedido->fecha_pedido=new DateTime($fila['total_pedido']);
                         
                         }
 			$consulta->closeCursor();
@@ -228,11 +242,11 @@ class PedidosModelo{
         $numero_pedido= $this->numero_pedido;
         $cantidad= $this->cantidad_producto;
         $total= $this->total_pedido;
-        
+        $fecha_pedido= $this->fecha_pedido->format('Y-m-d H:i:s');
         try {
             
-            $sql="INSERT INTO pedidos (productos_id_producto,usuarios_id_usuario,numero_pedido,cantidad_producto,total_pedido)"
-                                . " VALUES(:id_producto,:id_usuario,:numero_pedido,:cantidad,:total)";
+            $sql="INSERT INTO pedidos (productos_id_producto,usuarios_id_usuario,numero_pedido,cantidad_producto,total_pedido,fecha_pedido)"
+                                . " VALUES(:id_producto,:id_usuario,:numero_pedido,:cantidad,:total,:fecha_pedido)";
 			
 			$consulta=$conexion->prepare($sql);
 			
@@ -241,6 +255,7 @@ class PedidosModelo{
                         $consulta->bindParam(':numero_pedido',$numero_pedido,PDO::PARAM_INT);
 			$consulta->bindParam(':cantidad',$cantidad,PDO::PARAM_INT);
 			$consulta->bindParam(':total',$total,PDO::PARAM_INT);
+                        $consulta->bindParam(':fecha_pedido',$fecha_pedido,PDO::PARAM_STR);
 			
 			
 			$resultado=$consulta->execute();
@@ -323,9 +338,56 @@ class PedidosModelo{
 		
 		
 	}
-    
-    /*---------------------ACTUALIZAR-----------------------*/
 
+    
+    /*---------------------buscar-----------------------*/
+        
+    public function buscar($id_pedido,$id_usuario,$numero_pedido){
+        
+        
+                require_once("ConectarModelo.php");
+		
+		
+		try{
+			$conexion=ConectarModelo::conexion();
+			$sql="SELECT * FROM pedidos WHERE  id_pedido LIKE :id_pedido OR usuarios_id_usuario LIKE :id_usuario"
+                                . " OR numero_pedido LIKE :numero_pedido";
+			
+			$consulta=$conexion->prepare($sql);
+			
+			$consulta->bindParam(':id_pedido',$id_pedido,PDO::PARAM_INT);
+                        $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':numero_pedido',$numero_pedido,PDO::PARAM_INT);
+                        
+			
+			$resultado=$consulta->execute();
+			
+			if($resultado){
+				
+				
+				echo '<script type="text/javascript">
+				alert("El pedido se eliminó correctamente");
+				</script>';
+				
+				
+			}else{
+				
+				echo '<script type="text/javascript">
+				alert("El pedido no se pudo eliminar");
+				</script>';
+			}
+                        $consulta->closeCursor();
+			
+		}catch(PDOException $e){
+			
+			die("No se pudo conectar con la BBDD ".$e->getMessage());
+			echo("Linea de error ".$e->getLine());
+		}
+		
+		$conexion=null;
+		
+		
+	}
 
 }
 
