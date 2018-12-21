@@ -66,7 +66,7 @@
 						'Usuarios'=>['cerrarSesion','index','registrar','actualizarUsuario','listarUsuarios','listarUsuarioId','modificarUsuario','darseBajaUsuario','crearUsuario','login','loguearse','bajaVista'],
                                                 'Administrador'=>['index','listarUsuarios','listarUsuarioId','actualizarUsuario','modificarUsuario','bloquearUsuario','buscarUsuarios'],
                                                 'Productos'=>['index','listarProductos','nuevoProducto','guardarProducto','modificarProducto','actualizarProducto','eliminarProducto','buscarProductos'],
-                                                'Pedidos'=>['guardarPedido','eliminarPedido','actualizarPedido','nuevaPedido'],
+                                                'Pedidos'=>['guardarPedido','eliminarPedido','actualizarPedido','confirmarPedido','listarPedidos','listarPedidosAdmin','buscarPedidos','confirmarEliminarPedido'],
                                                
 
 						);

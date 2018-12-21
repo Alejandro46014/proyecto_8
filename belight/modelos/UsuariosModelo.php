@@ -432,14 +432,14 @@ class UsuariosModelo {
                         $consulta=$conexion->prepare($sql);
                         
                         $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':pais',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':ciudad',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':poblacion',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':calle',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':numero_calle',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':escalera',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':cp',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':telefono',$id_usuario,PDO::PARAM_INT);
+                        $consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
+                        $consulta->bindParam(':ciudad',$ciudad,PDO::PARAM_STR);
+                        $consulta->bindParam(':poblacion',$poblacion,PDO::PARAM_STR);
+                        $consulta->bindParam(':calle',$calle,PDO::PARAM_STR);
+                        $consulta->bindParam(':numero_calle',$num_calle,PDO::PARAM_INT);
+                        $consulta->bindParam(':escalera',$escalera,PDO::PARAM_STR);
+                        $consulta->bindParam(':cp',$cp,PDO::PARAM_INT);
+                        $consulta->bindParam(':telefono',$telefono,PDO::PARAM_INT);
 			
                         $consulta->execute();
                         
