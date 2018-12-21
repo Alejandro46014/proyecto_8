@@ -14,11 +14,11 @@
                         <a href="?controller=Productos&action=index&id=4">NineBots</a> 
 			<a href="?controller=Productos&action=index&id=5">Monociclos</a>
 			<a href="?controller=Productos&action=index&id=6">HoverBoards</a> 
-			<a class="user-icono" href="#"><i class="fas fa-user"></i><spam>Alejandro</spam></a>
+			<a class="user-icono enlace_usuarios" href="#"><i class="fas fa-user"></i><spam><?php echo $usuario->getNombreUsuario();  ?></spam></a>
                
 		<div class="extendido-usuarios">
-			<a  href="?controller=Usuarios&action=modificarPerfil">Modificar perfil</a>
-   			<a  href="?controller=Usuarios&action=bajaVista">Darse de baja</a>
+			<a  href="?controller=Usuarios&action=modificarUsuario&id=<?php echo($usuario->getIdUsuario()); ?>">Modificar perfil</a>
+   			<a  href="?controller=Usuarios&action=bajaVista&id=<?php echo $usuario->getIdUsuario(); ?>">Darse de baja</a>
     			<a  href="?controller=Usuarios&action=cerrarSesion">Cerrar sesión</a>
 				
                 </div>

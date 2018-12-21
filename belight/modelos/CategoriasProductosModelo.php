@@ -2,64 +2,47 @@
 
 class CategoriasProductosModelo{
     
-
-    private $id_categoria;
-    private  $genero;
-    private $descripcion;
+    private  $id_categoria,$categoria;
     
     public function __construct($id_categoria) {
-        
-        $this->id_categoria=$id_categoria;
-        if($this->id_categoria==1){
-            $this->genero="Acción";
-        }elseif($this->id_categoria==2){
-            $this->genero="Terror";
-        }elseif($this->id_categoria==3){
-            $this->genero="Románticas";
-        }elseif($this->id_categoria==4){
-            $this->genero="Infantiles";
-        }elseif($this->id_categoria==5){
-            $this->genero="Comedia";
-        }elseif($this->id_categoria==6){
-            $this->genero="Ciencia-ficción";
-        }elseif($this->id_categoria==7){
-            $this->genero="Drama";
+        $this->id_categoria = $id_categoria;
+        if ($id_categoria==1){
+            
+            $this->categoria="Patinetes";
+            
+        }elseif ($id_categoria ==2) {
+            
+            $this->categoria="Bicicletas";
+            
+        }elseif ($id_categoria ==3) {
+            
+            $this->categoria="SegWays";
+            
+        }elseif ($id_categoria ==4) {
+            
+            $this->categoria="NineBots";
+            
+        }elseif ($id_categoria ==5) {
+            
+            $this->categoria="HoverBoards";
         }
     }
 
-
-    /*-------------------GETTERS--------------------*/
-    
-    public function getIdCategoria(){
-        
+    public function getIdCategoria() {
         return $this->id_categoria;
     }
-    
-    public function getGenero(){
-        
-        return $this->genero;
+
+    public function getCategoria() {
+        return $this->categoria;
     }
-    
-    public function getDescripcion(){
-        
-        return $this->descripcion;
+
+    public function setIdCategoria($id_categoria) {
+        $this->id_categoria = $id_categoria;
     }
-    
-    /*-------------------SETTERS--------------------*/
-    
-    public function setIdCategoria($id){
-        
-         $this->id_categoria=$id;
+
+    public function setCategoria($categoria) {
+        $this->categoria = $categoria;
     }
-    
-    public function setGenero($genero){
-        
-         $this->genero=$genero;
-    }
-    
-    public function setDescripcion($descripcion){
-        
-         $this->descripcion=$descripcion;
-    }
+
 
 }

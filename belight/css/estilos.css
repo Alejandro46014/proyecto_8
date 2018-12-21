@@ -15,6 +15,8 @@ body{
 
 /*----------------GENERALES------------------*/
 
+
+
 .activo{
     color: #ffffff;
     background-color: #9900cc;
@@ -30,7 +32,7 @@ body{
 .clearfix:after {
     clear: both;
 }
-h2{
+h2,h1{
 
 	font-family: 'Oswald', sans-serif;
 	text-transform: uppercase;
@@ -49,9 +51,10 @@ h2::after{
 }
 
 h3{
-	color: #fe4918;
+	color: #000000;
 	font-family: 'Oswald', sans-serif;
-	font-size: 1.5em;
+	font-size: 1.2em;
+        text-transform: uppercase;
 }
 ul{
 	list-style: none;
@@ -63,7 +66,7 @@ ul{
 	display: inline-block;
 	text-decoration: none;
 	float: right;
-	padding: 10px 40px;
+	padding: 10px 10px;
 	background-color: #289C24;
 	color: #ffffff;
 	font-family: 'oswald', sans-serif;
@@ -71,6 +74,7 @@ ul{
 	font-size: 1.2em;
 	margin-top: 20px;
 	transition: all .1s ease;
+        
 }
 .buttom_red{
 	display: inline-block;
@@ -93,7 +97,6 @@ ul{
 .buttom_green:hover{
 	background-color: #7DF56A;
 }
-
 
 
 .seccion{
@@ -120,6 +123,11 @@ ul{
 }
 
 @media only screen and (min-width:768px){
+	
+	.barra_contenedor{
+		width: 90%;
+		margin-left: 30px;
+	}
 	
 	.contenedor{
 	width: 90%;
@@ -178,6 +186,12 @@ nav.navegacion-principal{
 	width: 100%;
 }
 
+nav.navegacion-principal a.iniciar_sesion{
+    
+    
+    background-color: #289C24;
+    color: #ffffff;
+}
 nav.navegacion-principal a{
 	font-family: 'asap', sans-serif;
 	color: #0033ff;
@@ -187,7 +201,7 @@ nav.navegacion-principal a{
 	text-transform: uppercase;
 	font-size: 1.2em;
 	transition: all .6s ease;
-	/*margin-right: 10px;*/
+	
 	padding: 10px;
 	width: 100%;
 	display: inline-block;
@@ -196,9 +210,15 @@ nav.navegacion-principal a{
 	
 }
 
+nav.navegacion-principal a.iniciar_sesion:hover{
+    
+    background-color: #7DF56A;
+    font-weight: bold;
+}
+
 nav.navegacion-principal a:hover{
 		color: #ffffff;
-		background-color: #0033ff;
+		background-color: #00ccff;
 	}
 
 @media only screen and (min-width:768px){
@@ -210,18 +230,25 @@ nav.navegacion-principal a:hover{
 		text-align: left;
 		display: block;
 	}
+        
+        nav.navegacion-principal a.iniciar_sesion{
+    
+    margin-left: 40px;
+    margin-right: 20px;
+    
+}
 	
-	nav.navegacion-principal a{
+	/*nav.navegacion-principal a{
 		
 		margin-right: 10px;
 		padding: 10px;
 		display: inline-block;
 		
-	}
+	}*/
 	
 	nav.navegacion-principal a{
 	font-family: oswald, sans-serif;
-	color: #0033ff;
+	color: #9900cc;
 	border-radius: 10px;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -234,13 +261,18 @@ nav.navegacion-principal a:hover{
 	
 	
 }
+
+
 	
 	
-nav.navegacion-principal a:last-child{
-		float: right;
-		border: none;
+
 	
-	}	
+	
+nav.navegacion-principal a.enlace_usuarios{
+    
+    float: right;
+}
+	
 	
 	nav.navegacion-principal a:last-child i{
 		margin-right: 22px;
@@ -285,7 +317,7 @@ div.extendido-usuarios{
 }
 div.extendido-usuarios a{
 	font-family: oswald, sans-serif;
-	color: #0033ff;
+	color: #9900cc;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -298,9 +330,26 @@ div.extendido-usuarios a{
 	
 }
 
+div.registro_inicio a.registrar{
+    
+    font-family: 'asap', sans-serif;
+	color: #9900cc;
+	background-color: #ffffff;
+	border:  2px solid #9900cc;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	transition: all .6s ease;
+	
+	padding: 10px;
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}
+
 div.extendido-usuarios a:hover{
 	
-	background-color: #0033ff;
+	background-color: #9900cc;
 	color: #ffffff;
 }
 
@@ -308,16 +357,38 @@ div.extendido-usuarios a:hover{
 
 @media only screen and (min-width:768px){
 	
-	
+div.registro_inicio a.registrar{
+    
+    font-family: oswald, sans-serif;
+	color: #9900cc;
+	border-radius: 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	transition: all .6s ease;
+	/*margin-right: 10px;*/
+	padding: 10px;
+	display: inline-block;
+	width: 170px;
+        margin-top: 5px;
+}
+    
 div.extendido-usuarios{
-	width: 200px;
+	width: 150px;
 	border-top-right-radius: 5px; 
 	border-top-left-radius: 5px;
 	position: relative;
-	left:83%;
-	top:57px;
+	left:  85%;
+	
 	
 }
+	div.registro_inicio{
+		text-align: center;
+		width:  7%;
+                margin-top: 0;
+		margin-right: 300px;
+		float: right;
+	}
 	
 	
 }
@@ -334,30 +405,72 @@ div.extendido-usuarios{
 	}
 }
 
-
 /*------------------------- ------BOX-----------------------------------------------------*/
 
 
 #box{
-  text-align: center;;
+  text-align: center;
+  margin-bottom: 80px;
 }
 
 .item_box{
  margin-top: 30px;
-  height: 560px;
-  display: inline-block;
+  height: auto;
+  overflow: hidden;
   
 }
 
 @media only screen and (min-width:768px){
 	
+        .item_producto{
+        
+        width:50%;
+        margin:20px auto;
+        }
+        .item_producto img{
+        
+        width:50%;
+        }
+        
 	.item_box{
-		margin: 30px 15px;
-		width: 20%;
+		margin: 50px 15px;
+		width: 25%;
+                display: inline-block;
+                height:800px;
+                
+                
+		
 	}
+        div.portada{
+        padding-top:10px;
+        }
+        div.portada img{
+                box-shadow: 5px 6px 20px 0px black;
+        
+        }
+        
+        div.foto_miniatura {
+            
+            width: 100%;
+        }
+        
+        div.foto{
+            
+            width: 50%;
+            float: left;
+        }
+        
+        div.foto img{
+            
+           width:  100%;
+           border-radius: 30px;
+           margin-top: 20px;
+           padding: 5px;
+        }
 }
 .item_box img{
-  width: 80%;
+  width: 50%;
+margin: auto;
 
 }
 
@@ -366,6 +479,17 @@ div.extendido-usuarios{
   font-weight: bold;
   font-size: 1.5em;
   margin-bottom: 20px;
+  height: 50px;
+
+}
+
+.item_title_vo{
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  height: 50px;
+  font-style: italic;
 }
 
 .item_desc{
@@ -377,10 +501,33 @@ div.extendido-usuarios{
   white-space: normal;
 }
 
+.item_desc a{
+  width: 100%;
+  text-align:center;
+  
+}
+
 .item_price{
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+}
+
+.item_reparto li{
+  text-align: justify;
+  padding: 15px 15px;
+ 
+}
+
+.item_reparto li.director{
+                height: 50px;
+}
+.item_reparto li.reparto{
+        height: 150px;
+        
+}
+.item_reparto li.ano{
+        height: 50px;
 }
 
 /*------------------------FORMULARIOS-------------------------*/
@@ -399,7 +546,7 @@ div.formulario{
 	box-shadow: 2px 2px 10px 10px #747170;
 	border-radius: 20px;
 	padding: 20px 20px 20px 60px;
-        margin: 300px 0;
+        margin: 200px 0;
 }
 
 div.formulario_small{
@@ -408,8 +555,8 @@ div.formulario_small{
 	border: 1px solid #747170;
 	box-shadow: 2px 2px 10px 10px #747170;
 	border-radius: 20px;
-	padding: 20px ;
-        margin: 300px 0;
+	padding: 20px;
+        margin: 200px 0;
 }
 
 div.col_formulario input,
@@ -422,6 +569,22 @@ div.col_formulario textarea{
 
 div.col_3_formulario input,
 div.col_3_formulario select{
+	
+	width: 90%;
+	display: block;
+	margin: 20px auto;
+}
+
+div.col_2_formulario input,
+div.col_2_formulario select{
+	
+	width: 90%;
+	display: block;
+	margin: 20px auto;
+}
+
+div.col_4_formulario input,
+div.col_4_formulario select{
 	
 	width: 90%;
 	display: block;
@@ -443,7 +606,8 @@ div.col_3_formulario select{
 }
 	
 	
-div.col_2_formulario input{
+div.col_2_formulario input,
+div.col_2_formulario select{
 	
 	width: 90%;
 	display: block;
@@ -478,7 +642,7 @@ div.col_3_formulario label{
 	
 	div.formulario_small{
 	
-		width: 25%;
+		width: 35%;
 		margin: 10px auto;
 		
 }
@@ -504,6 +668,13 @@ div.col_3_formulario label{
 		margin: 0 auto;
 		float: left;
 	}
+        
+        div.col_4_formulario{
+		
+		width: 25%;
+		margin: 0 auto;
+		float: left;
+	}
 	
 	div.leyenda{
 		color: #B1080A;
@@ -521,11 +692,18 @@ div.col_3_formulario label{
 }
 
 /*----------------------------------GESTIONAR USUARIOS Y TABLAS---------------------*/
-
+div.tabla a{
+    text-decoration: none;
+}
     
 div.tabla{
 	overflow-x:auto;
 	
+}
+
+.imgtd{
+   
+    width: 70px;
 }
 
 table{
@@ -592,7 +770,7 @@ footer h3{
 }
 
 footer h3 span{
-	color: #0033ff;
+	color: #9900cc;
 	margin-left: 20px;
 }
 

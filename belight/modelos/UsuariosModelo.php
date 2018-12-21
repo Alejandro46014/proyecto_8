@@ -19,7 +19,7 @@ class UsuariosModelo {
 	/*---------constructor*/
 	public function __construct(){
 		
-            $this->tipo_usuario=new TipoUsuarios();
+            $this->tipo_usuario=new TipoUsuarios(2);
 	}
 	
 	/*---------------getters---------------*/
@@ -65,7 +65,7 @@ class UsuariosModelo {
 	
         public function getDireccionUsuario(){
 		
-		return($this->direccion_usuario_usuario);
+		return($this->direccion_usuario);
 	}
 	
 	/*-----------------------setters--------------------------*/
@@ -144,7 +144,7 @@ class UsuariosModelo {
 					$usuario->apellidos_usuario=$fila['apellidos_usuario'];
 					$usuario->email_usuario=$fila['email_usuario'];
 					$usuario->password_usuario=$fila['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios();
+					$usuario->tipo_usuario=new TipoUsuarios($fila['tipo_usuarios_id_tipo_usuario']);
 					
                                         $direccion=new DireccionUsuariosModelo();
                                         
@@ -156,7 +156,7 @@ class UsuariosModelo {
                                         $direccion->setNCalleUsuario($fila['n_calle_usuario']);
                                         $direccion->setEscaleraUsuario($fila['escalera_usuario']);
                                         $direccion->setCpUsuario($fila['cp_usuario']);
-                                        $direccion->setTelfUsuario($fila['telefono_usuario']);
+                                        $direccion->setTelfUsuario($fila['telefono1_usuario']);
                                         
                                         $usuario->setDireccionUsuario($direccion);
 					
@@ -208,9 +208,8 @@ class UsuariosModelo {
 					$usuario->nombre_usuario=$resultado['nombre_usuario'];
 					$usuario->apellidos_usuario=$resultado['apellidos_usuario'];
 					$usuario->email_usuario=$resultado['email_usuario'];
-					$usuario->activo_usuario=$resultado['activo_usuario'];
 					$usuario->password_usuario=$resultado['password_usuario'];
-					$usuario->tipo_usuario=new TipoUsuarios();
+					$usuario->tipo_usuario=new TipoUsuarios($resultado[tipo_usuarios_id_tipo_usuario]);
 					
                                         $direccion=new DireccionUsuariosModelo();
                                         
@@ -222,7 +221,7 @@ class UsuariosModelo {
                                         $direccion->setNCalleUsuario($resultado['n_calle_usuario']);
                                         $direccion->setEscaleraUsuario($resultado['escalera_usuario']);
                                         $direccion->setCpUsuario($resultado['cp_usuario']);
-                                        $direccion->setTelfUsuario($resultado['telefono_usuario']);
+                                        $direccion->setTelfUsuario($resultado['telefono1_usuario']);
                                         
                                         $usuario->setDireccionUsuario($direccion);
 			
@@ -322,7 +321,8 @@ class UsuariosModelo {
 			echo("<p>Los campos contraseña y repetir contraseña no coinciden</p>");
 			$mal5=true;
 		}
-	$patron="/^(?=.*\d)(?=.*)(?=.*[A-Z])(?=.*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
+                
+	$patron="/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
 		
 		if(!preg_match($patron,$password)){//compruebo que el campo cumpla el patron establecido
 			echo("<p>El campo contraseña no es valido, consulte la leyenda</p>");
@@ -408,13 +408,12 @@ class UsuariosModelo {
                 
                 $conexion->beginTransaction();
                 
-		$sql="INSERT INTO usuarios (dni_usuario,nombre_usuario,apellidos_usuario,email_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:dni,:nombre,:apellidos,:email,:pais,:password,:tipo_usuario)";
+		$sql="INSERT INTO usuarios (dni_usuario,nombre_usuario,apellidos_usuario,email_usuario,password_usuario,tipo_usuarios_id_tipo_usuario) VALUES (:dni,:nombre,:apellidos,:email,:password,:tipo_usuario)";
 		$consulta=$conexion->prepare($sql);
 		
                         $consulta->bindParam(':dni',$dni,PDO::PARAM_STR);
 			$consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-			$consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
 			$consulta->bindParam(':password',$password,PDO::PARAM_STR);
 			$consulta->bindParam(':email',$email,PDO::PARAM_STR);
 			$consulta->bindParam(':tipo_usuario',$tipo_usuario,PDO::PARAM_INT);
@@ -487,7 +486,7 @@ class UsuariosModelo {
 		$nombre=$this->nombre_usuario;
 		$apellidos=$this->apellidos_usuario;
 		$email=$this->email_usuario;
-		$tipo_usuario= $this->tipo_usuario->getIdTipoUsuario();
+		
 		$password=$this->password_usuario;
                 
                 $pais=$this->direccion_usuario->getPaisUsuario();
@@ -554,7 +553,7 @@ class UsuariosModelo {
 			echo("<p>Los campos contraseña y repetir contraseña no coinciden</p>");
 			$mal5=true;
 		}
-	$patron="/^(?=.*\d)(?=.*)(?=.*[A-Z])(?=.*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
+	$patron="/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8}$/";//contraseña longitud 8 con mayúsculas, minúsculas y dígitos//contraseña longitud 8 con mayúsculas, minúsculas y dígitos
 		
 		if(!preg_match($patron,$password)){//compruebo que el campo cumpla el patron establecido
 			echo("<p>El campo contraseña no es valido, consulte la leyenda</p>");
@@ -647,21 +646,21 @@ class UsuariosModelo {
 			$consulta->bindParam(':dni',$dni,PDO::PARAM_STR);
 			$consulta->bindParam(':nombre',$nombre,PDO::PARAM_STR);
 			$consulta->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
-			$consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
+			$consulta->bindParam(':id',$id,PDO::PARAM_INT);
 			$consulta->bindParam(':password',$password,PDO::PARAM_STR);
 			$consulta->bindParam(':email',$email,PDO::PARAM_STR);
-			$consulta->bindParam(':tipo_usuario',$tipo_usuario,PDO::PARAM_INT);
+			
                         
                         
-                        $consulta->bindParam(':id_usuario',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':pais',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':ciudad',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':poblacion',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':calle',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':numero_calle',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':escalera',$id_usuario,PDO::PARAM_STR);
-                        $consulta->bindParam(':cp',$id_usuario,PDO::PARAM_INT);
-                        $consulta->bindParam(':telefono',$id_usuario,PDO::PARAM_INT);
+                        
+                        $consulta->bindParam(':pais',$pais,PDO::PARAM_STR);
+                        $consulta->bindParam(':ciudad',$ciudad,PDO::PARAM_STR);
+                        $consulta->bindParam(':poblacion',$poblacion,PDO::PARAM_STR);
+                        $consulta->bindParam(':calle',$calle,PDO::PARAM_STR);
+                        $consulta->bindParam(':numero_calle',$num_calle,PDO::PARAM_INT);
+                        $consulta->bindParam(':escalera',$escalera,PDO::PARAM_STR);
+                        $consulta->bindParam(':cp',$cp,PDO::PARAM_INT);
+                        $consulta->bindParam(':telefono',$telefono,PDO::PARAM_INT);
 			
 			
 			$resultado=$consulta->execute();
@@ -793,8 +792,8 @@ class UsuariosModelo {
 				$consulta->bindParam(':password',$password_usuario,PDO::PARAM_STR);
 				
 				$consulta->execute();
-				
 				$resultado=$consulta->fetch(PDO::FETCH_ASSOC);
+				
 				
 				
 				$numero_filas=$consulta->rowCount();
@@ -810,8 +809,9 @@ class UsuariosModelo {
 				</script>');
 					
 				}elseif($numero_filas==1){
-					
-					$resultado=true;
+                                    
+					$usuario=new UsuariosModelo();
+                                        $usuario=$usuario->getById($resultado['id_usuario']);
 					                                      
 				}
 				
@@ -824,7 +824,7 @@ class UsuariosModelo {
 	
 			}
 		}
-		return($resultado);
+		return($usuario);
 	}
 	
 }

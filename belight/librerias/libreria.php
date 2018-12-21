@@ -28,9 +28,9 @@ function enlaceModificarValoracion($id){
 function subir_archivos(){
 	
 	
-        $directorio = "img/";
-        $nombre_imagen=$_POST['nombre_imagen'];
-	$directorio_imagen="img/".$_FILES['archivo']['name'];
+        $directorio = "img/imagenes_productos/";
+        
+	$directorio_imagen="img/imagenes_productos/".$_FILES['archivo']['name'];
 	$tipo=$_FILES['archivo']['type'];
 	$jpeg="image/jpeg";
 	$png="image/png";
@@ -43,9 +43,9 @@ function subir_archivos(){
 			alert('El archivo ". basename( $_FILES['archivo']['name']). " ha sido subido');
 			</script>");
 		
-		echo "<p>El archivo ". basename( $_FILES['archivo']['name']). " ha sido subido</p> ";
 		
-		$imagen=['nombre_imagen'=>$nombre_imagen,'directorio_imagen'=>$directorio_imagen];
+		
+		
 		
 		} else{
 		
@@ -62,7 +62,7 @@ function subir_archivos(){
 		
 		
 	}
-        return $imagen;;
+        return $directorio_imagen;
 }
 
 function subir_multiples_archivos(){
