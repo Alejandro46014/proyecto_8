@@ -28,7 +28,7 @@ function enlaceModificarValoracion($id){
 function subir_archivos(){
 	
 	
-        $directorio = "img/imagenes_productos/";
+        $directorio = "img/";
         
 	$directorio_imagen="img/imagenes_productos/".$_FILES['archivo']['name'];
 	$tipo=$_FILES['archivo']['type'];
